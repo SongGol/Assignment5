@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Assignment5</string>
-    <string name="kakao_app_key">424911e2e818f9ac62579b37a61be40a</string>
     <string name="start_naver_login_tv">네이버 로그인</string>
     <string name="start_kakao_login_tv">카카오 로그인</string>
     <string name="start_google_login_tv">구글 로그인</string>

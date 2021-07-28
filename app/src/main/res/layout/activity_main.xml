@@ -3,102 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/ttada_blue"
-    tools:context=".MainActivity">
+    android:layout_height="match_parent">
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/start_ttada_iv"
+    <TextView
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/start_naver_login_tv"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_start_ttada" />
-
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/start_ttada_bottom_iv"
-        android:layout_width="300dp"
-        android:layout_height="70dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_start_bottom_iv" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/start_naver_login_tv"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/start_naver_login_tv"
-        android:textSize="14sp"
-        android:textColor="@color/black"
-        android:gravity="center"
-        android:background="@drawable/border_shape"
-        android:backgroundTint="@color/naver_green"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/start_ttada_iv"
-        app:layout_constraintStart_toStartOf="@+id/start_ttada_iv"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="네이버 로그인" />
-
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/start_naver_iv"
-        android:layout_width="wrap_content"
-        android:layout_height="20dp"
-        app:layout_constraintBottom_toBottomOf="@+id/start_naver_login_tv"
-        app:layout_constraintStart_toStartOf="@+id/start_naver_login_tv"
-        app:layout_constraintTop_toTopOf="@+id/start_naver_login_tv"
-        app:srcCompat="@drawable/ic_start_naver" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/start_kakao_login_tv"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/start_kakao_login_tv"
-        android:textSize="14sp"
-        android:textColor="@color/black"
-        android:gravity="center"
-        android:background="@drawable/border_shape"
-        android:backgroundTint="@color/kakao_yellow"
-        android:layout_marginTop="20dp"
-        app:layout_constraintEnd_toEndOf="@+id/start_ttada_iv"
-        app:layout_constraintStart_toStartOf="@+id/start_ttada_iv"
-        app:layout_constraintTop_toBottomOf="@+id/start_naver_login_tv" />
-
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/start_kakao_iv"
-        android:layout_width="wrap_content"
-        android:layout_height="20dp"
-        app:layout_constraintBottom_toBottomOf="@+id/start_kakao_login_tv"
-        app:layout_constraintEnd_toEndOf="@+id/start_naver_iv"
-        app:layout_constraintStart_toStartOf="@+id/start_naver_iv"
-        app:layout_constraintTop_toTopOf="@+id/start_kakao_login_tv"
-        app:srcCompat="@drawable/ic_start_kakao" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/start_google_login_tv"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/start_google_login_tv"
-        android:textSize="14sp"
-        android:textColor="@color/black"
-        android:gravity="center"
-        android:background="@drawable/border_shape"
-        android:backgroundTint="@color/white"
-        android:layout_marginTop="20dp"
-        app:layout_constraintEnd_toEndOf="@+id/start_ttada_iv"
-        app:layout_constraintStart_toStartOf="@+id/start_ttada_iv"
-        app:layout_constraintTop_toBottomOf="@+id/start_kakao_login_tv" />
-
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/start_google_iv"
-        android:layout_width="wrap_content"
-        android:layout_height="20dp"
-        app:layout_constraintBottom_toBottomOf="@+id/start_google_login_tv"
-        app:layout_constraintEnd_toEndOf="@+id/start_kakao_iv"
-        app:layout_constraintStart_toStartOf="@+id/start_kakao_iv"
-        app:layout_constraintTop_toTopOf="@+id/start_google_login_tv"
-        app:srcCompat="@drawable/ic_start_google" />
-
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

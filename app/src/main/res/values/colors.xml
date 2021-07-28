@@ -18,4 +18,7 @@
     <color name="medium_blue">#0000CD</color>
     <color name="deep_sky_blue">#00BFFF</color>
     <color name="dodger_blue">#1290FF</color>
+    <color name="ttada_blue">#00397B</color>
+    <color name="naver_green">#1EC800</color>
+    <color name="kakao_yellow">#FEE500</color>
 </resources>

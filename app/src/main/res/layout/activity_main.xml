@@ -31,7 +31,9 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        android:background="@color/white"
         app:menu="@menu/main_bottom_navigation_menu"
-        app:itemBackground="@color/white"
-        app:itemTextColor="@color/main_bottom_navigation_color"/>
+        app:itemTextColor="@color/main_bottom_navigation_color"
+        app:itemIconTint="@color/main_bottom_navigation_color"
+        app:labelVisibilityMode="labeled"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

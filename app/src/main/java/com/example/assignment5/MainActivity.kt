@@ -16,6 +16,54 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
+        supportFragmentManager.beginTransaction().apply {
+            replace(binding.mainFrameLayout.id, PlayFragment())
+            addToBackStack(null)
+            commit()
+        }
+
+        binding.mainBottomNavigationView.setOnItemSelectedListener {
+            when(it.itemId) {
+                R.id.main_play -> {
+                    Log.d("bottom navigation", "play")
+                    supportFragmentManager.beginTransaction().apply {
+                        replace(binding.mainFrameLayout.id, PlayFragment())
+                        addToBackStack(null)
+                        commit()
+                    }
+                    return@setOnItemSelectedListener true
+                }
+                R.id.main_store -> {
+                    Log.d("bottom navigation", "store")
+                    return@setOnItemSelectedListener true
+                }
+                R.id.main_charger -> {
+                    Log.d("bottom navigation", "charger")
+                    return@setOnItemSelectedListener true
+                }
+                R.id.main_storage -> {
+                    Log.d("bottom navigation", "storage")
+                    return@setOnItemSelectedListener true
+                }
+                R.id.main_setting -> {
+                    Log.d("bottom navigation", "setting")
+                    supportFragmentManager.beginTransaction().apply {
+                        replace(binding.mainFrameLayout.id, SettingFragment())
+                        addToBackStack(null)
+                        commit()
+                    }
+                    return@setOnItemSelectedListener true
+                }
+                else -> {
+                    Log.d("bottom navigation", "fail")
+                    return@setOnItemSelectedListener false
+                }
+            }
+        }
+
+
+
+
         // 사용자 정보 요청 (기본)
         UserApiClient.instance.me { user, error ->
             if (error != null) {

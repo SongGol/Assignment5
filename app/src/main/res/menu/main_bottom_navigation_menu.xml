@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item
+        android:id="@+id/main_store"
+        android:enabled="true"
+        android:icon="@drawable/ic_store_default"
+        android:title="상점"/>
+
+    <item
+        android:id="@+id/main_charger"
+        android:enabled="true"
+        android:icon="@drawable/ic_charger_default"
+        android:title="충전소"/>
+
+    <item
+        android:id="@+id/main_play"
+        android:enabled="true"
+        android:icon="@drawable/ic_play_selected"
+        android:title="플레이"/>
+
+    <item
+        android:id="@+id/main_storage"
+        android:enabled="true"
+        android:icon="@drawable/ic_storage_default"
+        android:title="보관함"/>
+
+    <item
+        android:id="@+id/main_setting"
+        android:enabled="true"
+        android:icon="@drawable/ic_setting_default"
+        android:title="설정"/>
+</menu>

@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/athleticsNameTv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="올림픽"
+        android:textSize="12sp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:background="@color/ttada_blue"
+        android:padding="7dp"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/remainingTimeTv"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/athleticsIv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_baseball_default"
+        android:layout_marginStart="10dp"
+        app:layout_constraintTop_toTopOf="@id/athleticsNameTv"
+        app:layout_constraintBottom_toBottomOf="@id/athleticsNameTv"
+        app:layout_constraintStart_toStartOf="@id/athleticsNameTv"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/remainingTimeTv"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="00:00:00 남음"
+        android:textSize="12sp"
+        android:textColor="@color/blue"
+        android:gravity="center_vertical|end"
+        android:paddingEnd="5dp"
+        app:layout_constraintHorizontal_weight="2"
+        app:layout_constraintStart_toEndOf="@id/athleticsNameTv"
+        app:layout_constraintBottom_toBottomOf="@+id/athleticsNameTv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/athleticsNameTv" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/item_v_t1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/bright_grey"
+        app:layout_constraintTop_toBottomOf="@id/athleticsIv"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/homeTeamTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        android:text="칠레"
+        app:layout_constraintBottom_toTopOf="@id/item_v_t2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/item_v_t1" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/homeIv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/homeTeamTv"
+        app:layout_constraintStart_toEndOf="@+id/homeTeamTv"
+        app:layout_constraintTop_toTopOf="@+id/homeTeamTv"
+        app:srcCompat="@drawable/ic_home" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/endDateTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="7/27 (화)"
+        app:layout_constraintBottom_toTopOf="@id/endTimeTv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/homeTeamTv"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/endTimeTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="00:00"
+        app:layout_constraintBottom_toBottomOf="@id/homeTeamTv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/endDateTv" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/expeditionTeamTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="도미니카"
+        app:layout_constraintBottom_toBottomOf="@+id/endTimeTv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/endDateTv" />
+
+    <androidx.gridlayout.widget.GridLayout
+        android:id="@+id/gameGridLo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:useDefaultMargins="false"
+        app:rowCount="3"
+        app:columnCount="4"
+        app:layout_constraintTop_toBottomOf="@id/endTimeTv"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/winLossTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="승무패"
+            android:gravity="center"
+            android:textSize="16sp"
+            app:layout_columnWeight="1"
+            app:layout_column="0"
+            app:layout_row="0" />
+
+        <LinearLayout
+            android:id="@+id/homeWinLO"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/grid_item_border"
+            app:layout_columnWeight="2"
+            app:layout_column="1"
+            app:layout_row="0">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/homeWinTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="홈 승"
+                android:layout_weight="1"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/homeWinRatioTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0.00"
+                android:gravity="center"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/drawTopLO"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/grid_item_border"
+            app:layout_columnWeight="2"
+            app:layout_column="2"
+            app:layout_row="0">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/drawTopTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="무승부"
+                android:gravity="center"
+                android:layout_weight="1" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/drawRatioTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0.00"
+                android:gravity="center"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/expeditionWinLO"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/grid_item_border"
+            app:layout_columnWeight="2"
+            app:layout_column="3"
+            app:layout_row="0">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/expeditionWinTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="원정 승"
+                android:gravity="center"
+                android:layout_weight="1" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/expeditionWinRatioTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0.00"
+                android:gravity="center"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/handTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="H+0.0"
+            android:gravity="center"
+            android:textSize="16sp"
+            app:layout_columnWeight="1"
+            app:layout_column="0"
+            app:layout_row="1" />
+
+        <LinearLayout
+            android:id="@+id/handWinLO"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/grid_item_border"
+            app:layout_columnWeight="2"
+            app:layout_column="1"
+            app:layout_row="1">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/handHomeWinTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="홈 승"
+                android:layout_weight="1"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/handHomeWinRatioTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0.00"
+                android:gravity="center"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/handDrawLO"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/grid_item_border"
+            app:layout_columnWeight="2"
+            app:layout_column="2"
+            app:layout_row="1">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/handDrawTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="무승부"
+                android:gravity="center"
+                android:layout_weight="1" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/handDrawRatioTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0.00"
+                android:gravity="center"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/handExpeditionWinLO"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/grid_item_border"
+            app:layout_columnWeight="2"
+            app:layout_column="3"
+            app:layout_row="1">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/handExpeditionWinTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="원정 승"
+                android:gravity="center"
+                android:layout_weight="1" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/handExpeditionWinRatioTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0.00"
+                android:gravity="center"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/scoreSumTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="점수합"
+            android:gravity="center"
+            android:textSize="16sp"
+            app:layout_columnWeight="1"
+            app:layout_column="0"
+            app:layout_row="2" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/scoreSumLowLo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/grid_item_border"
+            app:layout_columnWeight="2"
+            app:layout_column="1"
+            app:layout_row="2">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/scoreLowTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="홈 승"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/scoreLowIv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/ic_baseline_arrow_drop_down_24"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/scoreLowTv"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/scoreLowRatioTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0.00"
+                android:gravity="center"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/scoreStandardTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="기준점 0.0"
+            android:gravity="center"
+            android:background="@drawable/grid_item_border"
+            app:layout_row="2"
+            app:layout_column="2"
+            app:layout_columnWeight="2"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/scoreSumHighLo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/grid_item_border"
+            app:layout_columnWeight="2"
+            app:layout_column="3"
+            app:layout_row="2">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/scoreHighTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="홈 승"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/scoreHighIv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/ic_arrow_up"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/scoreHighTv"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/scoreHighRatioTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0.00"
+                android:gravity="center"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.gridlayout.widget.GridLayout>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/item_v_t2"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="@color/bright_grey"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/endTimeTv" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

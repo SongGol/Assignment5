@@ -12,13 +12,14 @@
     <color name="bright_grey">#E9E9E9</color>
     <color name="dark_red">#B71C1C</color>
     <color name="dark_grey">#696969</color>
+    <color name="silver">#C0C0C0</color>
     <color name="sky">#00BFFF</color>
-    <color name="dark_blue">#191970</color>
     <color name="grey">#DCDCDC</color>
     <color name="medium_blue">#0000CD</color>
     <color name="deep_sky_blue">#00BFFF</color>
     <color name="dodger_blue">#1290FF</color>
     <color name="ttada_blue">#00397B</color>
+    <color name="blue">#0053FF</color>
     <color name="ripple_color">#4200397B</color>
     <color name="naver_green">#1EC800</color>
     <color name="kakao_yellow">#FEE500</color>

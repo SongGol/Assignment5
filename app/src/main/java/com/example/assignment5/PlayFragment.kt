@@ -1,5 +1,6 @@
 package com.example.assignment5
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -25,6 +26,15 @@ class PlayFragment : Fragment() {
 
 
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.button.setOnClickListener {
+            val intent = Intent(activity, GameActivity::class.java)
+            startActivity(intent)
+        }
     }
 
 }

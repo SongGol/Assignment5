@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/game_gl_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="15dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/game_gl_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="15dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/game_gl_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="30dp" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/game_back_btn_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginStart="10dp"
+        app:layout_constraintStart_toStartOf="@+id/game_gl_start"
+        app:layout_constraintTop_toTopOf="@+id/game_gl_top"
+        app:srcCompat="@drawable/ic_back_arrow" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/gameCoinConstraintLo"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/grey_background"
+        app:layout_constraintBottom_toBottomOf="@id/game_back_btn_iv"
+        app:layout_constraintEnd_toStartOf="@id/gameJewelConstraintLo"
+        app:layout_constraintStart_toEndOf="@id/game_back_btn_iv"
+        app:layout_constraintTop_toTopOf="@id/game_back_btn_iv">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/game_coin_tv"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center_vertical|end"
+            android:paddingEnd="5dp"
+            android:text="TextView"
+            android:textColor="@color/ttada_blue"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/game_coin_add_iv"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/game_coin_add_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_add_circle" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/game_coin_iv"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        app:layout_constraintBottom_toBottomOf="@+id/gameCoinConstraintLo"
+        app:layout_constraintStart_toStartOf="@id/gameCoinConstraintLo"
+        app:layout_constraintTop_toTopOf="@+id/game_gl_top"
+        app:srcCompat="@drawable/ic_coin" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/gameJewelConstraintLo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/grey_background"
+        app:layout_constraintTop_toTopOf="@id/game_back_btn_iv"
+        app:layout_constraintBottom_toBottomOf="@id/game_back_btn_iv"
+        app:layout_constraintEnd_toEndOf="@id/game_gl_end"
+        app:layout_constraintStart_toEndOf="@id/gameCoinConstraintLo">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/game_jewel_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            app:srcCompat="@drawable/ic_jewel"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/game_jewel_tv"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text="TextView"
+            android:textSize="14sp"
+            android:textColor="@color/ttada_blue"
+            android:textStyle="bold"
+            android:gravity="center_vertical|end"
+            android:paddingEnd="5dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/game_jewel_iv"
+            app:layout_constraintEnd_toStartOf="@id/game_jewel_add_iv"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/game_jewel_add_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            app:srcCompat="@drawable/ic_add_circle"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/game_ttada_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:text="@string/game_ttada_tv"
+        android:textColor="@color/black"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/game_list_tv"
+        app:layout_constraintStart_toStartOf="@+id/game_back_btn_iv"
+        app:layout_constraintTop_toBottomOf="@+id/game_back_btn_iv" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/game_cart_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        app:layout_constraintBottom_toBottomOf="@+id/game_cart_tv"
+        app:layout_constraintStart_toStartOf="@+id/game_cart_tv"
+        app:layout_constraintTop_toTopOf="@+id/game_cart_tv"
+        app:srcCompat="@drawable/ic_list_bulleted" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/game_cart_tv"
+        android:layout_width="70dp"
+        android:layout_height="0dp"
+        android:gravity="center_vertical|end"
+        android:text="@string/game_cart_tv"
+        android:textColor="@color/black"
+        android:textSize="12dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:background="@drawable/round_border"
+        app:layout_constraintBottom_toBottomOf="@+id/game_ttada_tv"
+        app:layout_constraintEnd_toEndOf="@+id/game_result_tv"
+        app:layout_constraintStart_toStartOf="@+id/game_result_tv"
+        app:layout_constraintTop_toTopOf="@+id/game_ttada_tv" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/game_list_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:text="@string/game_list_tv"
+        android:textColor="@color/blue"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/game_ttada_tv"
+        app:layout_constraintTop_toBottomOf="@id/game_ttada_tv" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/game_betting_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/game_betting_tv"
+        android:textSize="16sp"
+        android:textColor="@color/silver"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@id/game_result_tv"
+        app:layout_constraintStart_toEndOf="@id/game_list_tv"
+        app:layout_constraintBottom_toBottomOf="@+id/game_list_tv"
+        app:layout_constraintTop_toTopOf="@+id/game_list_tv"
+        tools:layout_editor_absoluteX="170dp" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/game_result_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/game_result_tv"
+        android:textSize="16sp"
+        android:textColor="@color/silver"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/game_list_tv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/game_betting_tv"
+        app:layout_constraintTop_toTopOf="@+id/game_list_tv" />
+
+    <HorizontalScrollView
+        android:id="@+id/game_type_hsv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/bright_grey"
+        android:layout_marginTop="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/game_list_tv"
+        app:layout_constraintBottom_toTopOf="@id/gameRecyclerView">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/gameAll_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/gameAll_tv"
+                android:textSize="14sp"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:background="@color/blue"
+                android:padding="13dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/gameBaseball_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="13dp"
+                android:layout_marginStart="20dp"
+                app:layout_constraintEnd_toStartOf="@id/gameSoccer_iv"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/gameAll_tv"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_baseball_default" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/gameSoccer_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="13dp"
+                android:layout_marginStart="20dp"
+                app:layout_constraintEnd_toStartOf="@id/gameBasketball_iv"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/gameBaseball_iv"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_soccer_default" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/gameBasketball_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="13dp"
+                android:layout_marginStart="20dp"
+                app:layout_constraintEnd_toStartOf="@id/gameVolleyball_iv"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/gameSoccer_iv"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_basketball_default" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/gameVolleyball_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="13dp"
+                android:layout_marginStart="20dp"
+                app:layout_constraintEnd_toStartOf="@id/gameHockey_iv"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/gameBasketball_iv"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_volleyball_default" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/gameHockey_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:padding="13dp"
+                android:layout_marginStart="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/gameVolleyball_iv"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:srcCompat="@drawable/ic_hockey_default" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </HorizontalScrollView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/gameRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintStart_toStartOf="@+id/game_gl_start"
+        app:layout_constraintEnd_toEndOf="@id/game_gl_end"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/game_type_hsv"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

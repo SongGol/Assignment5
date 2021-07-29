@@ -3,4 +3,10 @@
     <string name="start_naver_login_tv">네이버 로그인</string>
     <string name="start_kakao_login_tv">카카오 로그인</string>
     <string name="start_google_login_tv">구글 로그인</string>
+    <string name="game_ttada_tv">경기로 따다</string>
+    <string name="game_cart_tv">카트</string>
+    <string name="game_list_tv">경기 목록</string>
+    <string name="game_betting_tv">베팅 내역</string>
+    <string name="game_result_tv">경기 결과</string>
+    <string name="gameAll_tv">전 종목</string>
 </resources>

@@ -6,13 +6,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.assignment5.databinding.ActivityGameBinding
 import com.example.assignment5.models.basketball.BasketBall
+import com.example.assignment5.models.basketball.Response
 import retrofit2.Call
 import retrofit2.Callback
 
 class GameActivity : AppCompatActivity() {
     private lateinit var binding: ActivityGameBinding
     private lateinit var customAdapter: CustomAdapter
-    private var gameArray = ArrayList<Game>()
+    private var gameArray = ArrayList<Response>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,9 +21,7 @@ class GameActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        for (i in 0..4) {
-            gameArray.add(Game(fullName = "", nickName = "", shortName = ""))
-        }
+        getBasketBallGame("2019-11-26")
 
         customAdapter = CustomAdapter(gameArray)
         binding.gameRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
@@ -34,7 +33,6 @@ class GameActivity : AppCompatActivity() {
         //레트로핏 테스트용 버튼
         binding.gameCartTv.setOnClickListener {
             Log.d("GameActivity", "test clicked")
-            getBasketBallGame("2019-11-26")
         }
     }
 
@@ -46,6 +44,9 @@ class GameActivity : AppCompatActivity() {
             override fun onResponse(call: Call<BasketBall>, response: retrofit2.Response<BasketBall>) {
                 if (response.isSuccessful) {
                     val result = response.body() as BasketBall
+                    for (item in result.response) {
+                        gameArray.add(item)
+                    }
 
                     Log.d("GameActivity","getBasketBall data - ${result.response[0].teams.home.name}")
                 } else {

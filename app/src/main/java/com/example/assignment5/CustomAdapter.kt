@@ -1,16 +1,14 @@
 package com.example.assignment5
 
-import android.content.Intent
 import android.graphics.Rect
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.assignment5.databinding.GameRecyclerItemBinding
+import com.example.assignment5.models.basketball.Response
 
-class CustomAdapter(var dataSet: ArrayList<Game>) : RecyclerView.Adapter<CustomAdapter.ViewHolder>(){
+class CustomAdapter(var dataSet: ArrayList<Response>) : RecyclerView.Adapter<CustomAdapter.ViewHolder>(){
     private lateinit var binding: GameRecyclerItemBinding
     private var mListener: OnItemClickListener? = null
 
@@ -20,7 +18,7 @@ class CustomAdapter(var dataSet: ArrayList<Game>) : RecyclerView.Adapter<CustomA
     }
 
     override fun onBindViewHolder(holder: CustomAdapter.ViewHolder, position: Int) {
-        val item: Game = dataSet[position]
+        val item: Response = dataSet[position]
         holder.bind(item)
     }
 
@@ -39,7 +37,9 @@ class CustomAdapter(var dataSet: ArrayList<Game>) : RecyclerView.Adapter<CustomA
             }
         }
 
-        fun bind(data: Game) {
+        fun bind(data: Response) {
+            binding.homeTeamTv.text = data.teams.home.name
+            binding.expeditionTeamTv.text = data.teams.away.name
             //binding.songTitleTv.text = data.title
             //binding.songArtistTv.text = data.artist
             //binding.titleCoverIv.setImageResource(data.draw)

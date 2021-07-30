@@ -6,11 +6,12 @@ data class Response(
     val id: Int,
     val league: League,
     val scores: Scores,
-    val stage: Any,
+    val stage: Any?,
     val status: Status,
     val teams: Teams,
     val time: String,
     val timestamp: Int,
     val timezone: String,
-    val week: Any
+    val week: Any?,
+    var isChecked: ArrayList<Boolean> = arrayListOf(false, false, false, false, false, false, false, false)
 )

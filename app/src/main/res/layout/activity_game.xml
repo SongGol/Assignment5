@@ -92,15 +92,6 @@
         app:layout_constraintStart_toEndOf="@id/gameCoinConstraintLo"
         app:layout_constraintTop_toTopOf="@id/game_back_btn_iv">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/game_jewel_iv"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_jewel" />
-
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/game_jewel_tv"
             android:layout_width="0dp"
@@ -113,7 +104,7 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/game_jewel_add_iv"
-            app:layout_constraintStart_toEndOf="@id/game_jewel_iv"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatImageView
@@ -127,6 +118,16 @@
             app:srcCompat="@drawable/ic_add_circle" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/game_jewel_iv"
+        android:layout_width="40dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="5dp"
+        app:layout_constraintBottom_toBottomOf="@id/gameJewelConstraintLo"
+        app:layout_constraintStart_toStartOf="@id/gameJewelConstraintLo"
+        app:layout_constraintEnd_toStartOf="@id/gameJewelConstraintLo"
+        app:layout_constraintTop_toTopOf="@id/gameJewelConstraintLo"
+        app:srcCompat="@drawable/ic_jewel" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/game_ttada_tv"

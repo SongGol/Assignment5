@@ -5,8 +5,7 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.assignment5.databinding.ActivityGameBinding
-import com.example.assignment5.models.basketball.BasketBall
-import com.example.assignment5.models.basketball.Response
+import com.example.assignment5.models.basketball.*
 import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Callback
@@ -25,7 +24,7 @@ class GameActivity : AppCompatActivity() {
         getBasketBallGame("2019-11-26")
         Log.d("GameActivity", gameArray.size.toString())
 
-        customAdapter = CustomAdapter(gameArray)
+        customAdapter = CustomAdapter(gameArray, this)
         binding.gameRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         binding.gameRecyclerView.adapter = customAdapter
         binding.gameRecyclerView.addItemDecoration(RecyclerViewDecoration(60))
@@ -45,7 +44,13 @@ class GameActivity : AppCompatActivity() {
                 if (response.isSuccessful) {
                     val result = response.body() as BasketBall
                     for (item in result.response) {
-                        gameArray.add(deepCopy(item))
+                        gameArray.add(
+                            Response(
+                            item.country, item.date, item.id,
+                            item.league, item.scores, item.stage,
+                            item.status, item.teams, item.time,
+                            item.timestamp, item.timezone, item.week
+                        ))
                     }
 
                     customAdapter.notifyDataSetChanged()

@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.assignment5.databinding.ActivityGameBinding
 import com.example.assignment5.models.basketball.BasketBall
 import com.example.assignment5.models.basketball.Response
+import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Callback
 
@@ -22,11 +23,12 @@ class GameActivity : AppCompatActivity() {
         setContentView(view)
 
         getBasketBallGame("2019-11-26")
+        Log.d("GameActivity", gameArray.size.toString())
 
         customAdapter = CustomAdapter(gameArray)
         binding.gameRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         binding.gameRecyclerView.adapter = customAdapter
-        binding.gameRecyclerView.addItemDecoration(RecyclerViewDecoration(10))
+        binding.gameRecyclerView.addItemDecoration(RecyclerViewDecoration(40))
 
 
 
@@ -44,11 +46,16 @@ class GameActivity : AppCompatActivity() {
             override fun onResponse(call: Call<BasketBall>, response: retrofit2.Response<BasketBall>) {
                 if (response.isSuccessful) {
                     val result = response.body() as BasketBall
+                    var count = 0
                     for (item in result.response) {
-                        gameArray.add(item)
+                        count++
+                        gameArray.add(deepCopy(item))
+                        if (count == 15) break
                     }
 
-                    Log.d("GameActivity","getBasketBall data - ${result.response[0].teams.home.name}")
+                    customAdapter.notifyDataSetChanged()
+                    Log.d("GameActivity", gameArray.size.toString())
+                    Log.d("GameActivity","getBasketBall data - ${gameArray[0].teams.home.name}")
                 } else {
                     Log.d("GameActivity","getBasketBall data - Error code ${response}")
                 }
@@ -57,5 +64,10 @@ class GameActivity : AppCompatActivity() {
                 Log.d("GameActivity",t.message ?: "통신오류")
             }
         })
+    }
+
+    private fun deepCopy(item: Response): Response {
+        val json = Gson().toJson(item)
+        return Gson().fromJson(json, Response::class.java)
     }
 }

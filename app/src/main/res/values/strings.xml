@@ -9,4 +9,12 @@
     <string name="game_betting_tv">베팅 내역</string>
     <string name="game_result_tv">경기 결과</string>
     <string name="gameAll_tv">전 종목</string>
+    <string name="winLossTv">승무패</string>
+    <string name="handTv">H-1.5</string>
+    <string name="scoreSumTv">점수합</string>
+    <string name="homeWin">홈 승</string>
+    <string name="awayWin">원정 승</string>
+    <string name="draw">무승부</string>
+    <string name="up">이상</string>
+    <string name="down">이하</string>
 </resources>

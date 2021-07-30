@@ -87,44 +87,44 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@drawable/grey_background"
-        app:layout_constraintTop_toTopOf="@id/game_back_btn_iv"
         app:layout_constraintBottom_toBottomOf="@id/game_back_btn_iv"
         app:layout_constraintEnd_toEndOf="@id/game_gl_end"
-        app:layout_constraintStart_toEndOf="@id/gameCoinConstraintLo">
+        app:layout_constraintStart_toEndOf="@id/gameCoinConstraintLo"
+        app:layout_constraintTop_toTopOf="@id/game_back_btn_iv">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/game_jewel_iv"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            app:srcCompat="@drawable/ic_jewel"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_jewel" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/game_jewel_tv"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:text="TextView"
-            android:textSize="14sp"
-            android:textColor="@color/ttada_blue"
-            android:textStyle="bold"
             android:gravity="center_vertical|end"
             android:paddingEnd="5dp"
-            app:layout_constraintTop_toTopOf="parent"
+            android:text="TextView"
+            android:textColor="@color/ttada_blue"
+            android:textSize="14sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/game_jewel_add_iv"
             app:layout_constraintStart_toEndOf="@id/game_jewel_iv"
-            app:layout_constraintEnd_toStartOf="@id/game_jewel_add_iv"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/game_jewel_add_iv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="3dp"
-            app:srcCompat="@drawable/ic_add_circle"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_add_circle" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -198,12 +198,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/game_result_tv"
-        android:textSize="16sp"
         android:textColor="@color/silver"
+        android:textSize="16sp"
         android:textStyle="bold"
+        android:layout_marginEnd="10dp"
         app:layout_constraintBottom_toBottomOf="@+id/game_list_tv"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/game_betting_tv"
+        app:layout_constraintEnd_toEndOf="@+id/gameJewelConstraintLo"
         app:layout_constraintTop_toTopOf="@+id/game_list_tv" />
 
     <HorizontalScrollView

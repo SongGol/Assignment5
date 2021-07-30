@@ -28,9 +28,7 @@ class GameActivity : AppCompatActivity() {
         customAdapter = CustomAdapter(gameArray)
         binding.gameRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         binding.gameRecyclerView.adapter = customAdapter
-        binding.gameRecyclerView.addItemDecoration(RecyclerViewDecoration(40))
-
-
+        binding.gameRecyclerView.addItemDecoration(RecyclerViewDecoration(60))
 
         //레트로핏 테스트용 버튼
         binding.gameCartTv.setOnClickListener {
@@ -46,11 +44,8 @@ class GameActivity : AppCompatActivity() {
             override fun onResponse(call: Call<BasketBall>, response: retrofit2.Response<BasketBall>) {
                 if (response.isSuccessful) {
                     val result = response.body() as BasketBall
-                    var count = 0
                     for (item in result.response) {
-                        count++
                         gameArray.add(deepCopy(item))
-                        if (count == 15) break
                     }
 
                     customAdapter.notifyDataSetChanged()

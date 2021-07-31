@@ -7,7 +7,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitClient {
 
-    private const val BASEBALL_URL = ""
+    private const val BASEBALL_URL = "https://api-baseball.p.rapidapi.com/"
     private const val BASKETBALL_URL = "https://api-basketball.p.rapidapi.com/"
     private const val SOCCER_URL = ""
 

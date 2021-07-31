@@ -12,7 +12,7 @@ import com.example.assignment5.databinding.GameRecyclerItemBinding
 import com.example.assignment5.models.basketball.Response
 import java.text.DecimalFormat
 
-class CustomAdapter(var dataSet: ArrayList<Response>, var context: Context) : RecyclerView.Adapter<CustomAdapter.ViewHolder>(){
+class CustomAdapter(var dataSet: ArrayList<MyResource>, var context: Context) : RecyclerView.Adapter<CustomAdapter.ViewHolder>(){
     private lateinit var binding: GameRecyclerItemBinding
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomAdapter.ViewHolder {
@@ -21,7 +21,7 @@ class CustomAdapter(var dataSet: ArrayList<Response>, var context: Context) : Re
     }
 
     override fun onBindViewHolder(holder: CustomAdapter.ViewHolder, position: Int) {
-        val item: Response = dataSet[position]
+        val item: MyResource = dataSet[position]
         holder.bind(item)
     }
 
@@ -97,35 +97,56 @@ class CustomAdapter(var dataSet: ArrayList<Response>, var context: Context) : Re
             }
         }
 
-        fun bind(data: Response) {
+        fun bind(data: MyResource) {
             //종목명, 팀명
-            binding.athleticsNameTv.text = data.league.name
-            binding.homeTeamTv.text = data.teams.home.name
-            binding.awayTeamTv.text = data.teams.away.name
+            binding.athleticsNameTv.text = data.leagueName
+            binding.homeTeamTv.text = data.homeName
+            binding.awayTeamTv.text = data.awayName
             //시간, 날짜
             val days = data.date.split("T")[0].split("-")
             binding.endDateTv.text = "${days[1]}/${days[2]}"
             binding.endTimeTv.text = data.time
+            /*
             //승무패
-            val diff = data.scores.home.total - data.scores.away.total
-            val higher = makeRatio(data.scores.home.total, if (diff < 0) -diff else diff)
-            val lower = makeRatio(data.scores.home.total, data.scores.home.total + if (diff < 0) diff else -diff)
+            val diff = data.homeTotal - data.awayTotal
+            val higher = makeRatio(data.homeTotal, if (diff < 0) -diff else diff)
+            val lower = makeRatio(data.homeTotal, data.homeTotal + if (diff < 0) diff else -diff)
             binding.homeWinRatioTv.text = if (diff < 0) higher else lower
             binding.drawRatioTv.text = makeRatio((higher.split(".")[0].toInt() - lower.split(".")[0].toInt()) / 2, lower.split(".")[0].toInt())
             binding.awayWinRatioTv.text = if (diff < 0) lower else higher
             //핸디캡
-            binding.handHomeWinRatioTv.text = if (diff < 0) makeRatio(data.scores.home.total + 1, -diff) else makeRatio(data.scores.home.total - 2, diff)
-            binding.handDrawRatioTv.text = makeRatio(data.scores.home.total + 2, if (diff < 0) -diff else diff)
-            binding.handAwayWinRatioTv.text = if (diff < 0) makeRatio(-diff - 1, 1) else makeRatio(data.scores.home.total + 1, data.scores.home.total - diff)
+            binding.handHomeWinRatioTv.text = if (diff < 0) makeRatio(data.homeTotal + 1, -diff) else makeRatio(data.homeTotal - 2, diff)
+            binding.handDrawRatioTv.text = makeRatio(data.homeTotal + 2, if (diff < 0) -diff else diff)
+            binding.handAwayWinRatioTv.text = if (diff < 0) makeRatio(-diff - 1, 1) else makeRatio(data.homeTotal + 1, data.awayTotal - diff)
             //기준 점수
-            val score = (data.scores.home.total + data.scores.away.total) * 3 / 4
+            val score = (data.homeTotal + data.awayTotal) * 3 / 4
             binding.scoreStandardTv.text = "기준점 $score"
-            binding.scoreLowRatioTv.text = makeRatio(score, data.scores.home.total)
-            binding.scoreHighRatioTv.text = makeRatio(score, data.scores.away.total)
+            binding.scoreLowRatioTv.text = makeRatio(score, data.homeTotal)
+            binding.scoreHighRatioTv.text = makeRatio(score, data.awayTotal)*/
+            //승무패
+            binding.homeWinRatioTv.text = "1.63"
+            binding.drawRatioTv.text = "3.63"
+            binding.awayWinRatioTv.text = "6.87"
+            //핸디캡
+            binding.handHomeWinRatioTv.text = "2.9"
+            binding.handDrawRatioTv.text = "3.51"
+            binding.handAwayWinRatioTv.text = "2.48"
+            //기준 점수
+            val score = (data.homeTotal + data.awayTotal) * 3 / 4
+            binding.scoreStandardTv.text = "기준점 $score"
+            binding.scoreLowRatioTv.text = makeRatio(score, data.homeTotal)
+            binding.scoreHighRatioTv.text = makeRatio(score, data.awayTotal)
             //check에 따라 색상 변경
             //initialCheck(data.isChecked)
             //남은 시간 설정
-            binding.remainingTimeTv.text = makeRemaining(data.remaining)
+            binding.remainingTimeTv.text = makeRemaining(data.remaining - GameActivity.time)
+            //모양 변경
+            binding.sportIv.setImageResource(when(data.type){
+                0 -> R.drawable.ic_baseball_default
+                1 -> R.drawable.ic_basketball_default
+                2 -> R.drawable.ic_soccer_default
+                else -> R.drawable.ic_baseball_default
+            })
         }
     }
 
@@ -140,7 +161,10 @@ class CustomAdapter(var dataSet: ArrayList<Response>, var context: Context) : Re
         val minute = (time % 3600) / 60
         val second = (time % 3600) % 60
 
-        return String.format("${hour}:${minute}:${second} 남음")
+        val formatter = DecimalFormat("00")
+        formatter.format(hour)
+
+        return String.format("${formatter.format(hour)}:${formatter.format(minute)}:${formatter.format(second)} 남음")
     }
 
     private fun initialCheck(data: ArrayList<Boolean>) {

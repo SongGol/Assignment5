@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_selected="false"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:drawable="@drawable/ic_volleyball_default"/>
+    <item android:state_selected="true"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:drawable="@drawable/ic_volleyball_selected"/>
+</selector>

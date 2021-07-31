@@ -53,14 +53,14 @@
             android:layout_height="0dp"
             android:gravity="center_vertical|end"
             android:paddingEnd="5dp"
-            android:text="TextView"
             android:textColor="@color/ttada_blue"
             android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/game_coin_add_iv"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="10000"/>
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/game_coin_add_iv"
@@ -98,14 +98,14 @@
             android:layout_height="0dp"
             android:gravity="center_vertical|end"
             android:paddingEnd="5dp"
-            android:text="TextView"
             android:textColor="@color/ttada_blue"
             android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/game_jewel_add_iv"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="0"/>
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/game_jewel_add_iv"
@@ -153,7 +153,7 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/game_cart_tv"
-        android:layout_width="70dp"
+        android:layout_width="75dp"
         android:layout_height="0dp"
         android:gravity="center_vertical|end"
         android:text="@string/game_cart_tv"
@@ -206,98 +206,6 @@
         app:layout_constraintEnd_toEndOf="@+id/gameJewelConstraintLo"
         app:layout_constraintTop_toTopOf="@+id/game_list_tv" />
 
-    <HorizontalScrollView
-        android:id="@+id/game_type_hsv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/bright_grey"
-        android:layout_marginTop="15dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/game_list_tv"
-        app:layout_constraintBottom_toTopOf="@id/gameRecyclerView">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/gameAll_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/gameAll_tv"
-                android:textSize="14sp"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:background="@color/blue"
-                android:padding="13dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/gameBaseball_iv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="13dp"
-                android:layout_marginStart="20dp"
-                app:layout_constraintEnd_toStartOf="@id/gameSoccer_iv"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/gameAll_tv"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_baseball_default" />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/gameSoccer_iv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="13dp"
-                android:layout_marginStart="20dp"
-                app:layout_constraintEnd_toStartOf="@id/gameBasketball_iv"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/gameBaseball_iv"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_soccer_default" />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/gameBasketball_iv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="13dp"
-                android:layout_marginStart="20dp"
-                app:layout_constraintEnd_toStartOf="@id/gameVolleyball_iv"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/gameSoccer_iv"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_basketball_default" />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/gameVolleyball_iv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="13dp"
-                android:layout_marginStart="20dp"
-                app:layout_constraintEnd_toStartOf="@id/gameHockey_iv"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/gameBasketball_iv"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_volleyball_default" />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/gameHockey_iv"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:padding="13dp"
-                android:layout_marginStart="10dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/gameVolleyball_iv"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:srcCompat="@drawable/ic_hockey_default" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </HorizontalScrollView>
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/gameRecyclerView"
         android:layout_width="0dp"
@@ -306,5 +214,54 @@
         app:layout_constraintStart_toStartOf="@+id/game_gl_start"
         app:layout_constraintEnd_toEndOf="@id/game_gl_end"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/game_type_hsv"/>
+        app:layout_constraintTop_toBottomOf="@id/gameTabLo"/>
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/gameTabLo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/bright_grey"
+        android:layout_marginTop="15dp"
+        app:tabTextAppearance="@style/tab_text"
+        app:tabMode="scrollable"
+        app:tabTextColor="@color/dark_grey"
+        app:tabSelectedTextColor="@color/transparent_black"
+        app:tabIndicatorColor="@color/bright_grey"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/game_list_tv"
+        app:layout_constraintBottom_toTopOf="@id/gameRecyclerView">
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/gameAll_tv"
+            android:background="@color/blue"/>
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:icon="@drawable/tab_baseball_selector" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:icon="@drawable/tab_soccer_selector" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:icon="@drawable/tab_basketball_selector"/>
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:icon="@drawable/tab_volleyball_selector" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:icon="@drawable/tab_hockey_selector" />
+    </com.google.android.material.tabs.TabLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

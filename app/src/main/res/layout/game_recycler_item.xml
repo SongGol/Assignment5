@@ -30,7 +30,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/athleticsIv"
+            android:id="@+id/sportIv"
             android:layout_width="wrap_content"
             android:layout_height="20dp"
             app:srcCompat="@drawable/ic_baseball_default"

@@ -9,7 +9,7 @@ object RetrofitClient {
 
     private const val BASEBALL_URL = "https://api-baseball.p.rapidapi.com/"
     private const val BASKETBALL_URL = "https://api-basketball.p.rapidapi.com/"
-    private const val SOCCER_URL = ""
+    private const val SOCCER_URL = "https://api-football-v1.p.rapidapi.com/v3/odds/"
 
     fun getRetrofit(type: Int, apiKey: String, apiHost: String) : Retrofit {
         return initRetrofit(type, apiKey, apiHost)

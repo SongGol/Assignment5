@@ -4,9 +4,9 @@ import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-interface ISports {
+interface ISoccer {
 
     @GET("games")
-    fun getGame(@Query("date") date: String
+    fun getSoccerGame(@Query("date") date: String
     ) : Call<MyResource>
 }

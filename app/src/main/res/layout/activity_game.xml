@@ -220,23 +220,23 @@
         android:id="@+id/gameTabLo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/bright_grey"
         android:layout_marginTop="15dp"
-        app:tabTextAppearance="@style/tab_text"
-        app:tabMode="scrollable"
-        app:tabTextColor="@color/dark_grey"
-        app:tabSelectedTextColor="@color/transparent_black"
-        app:tabIndicatorColor="@color/bright_grey"
-        app:layout_constraintStart_toStartOf="parent"
+        android:background="@color/bright_grey"
+        app:layout_constraintBottom_toTopOf="@id/gameRecyclerView"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/game_list_tv"
-        app:layout_constraintBottom_toTopOf="@id/gameRecyclerView">
+        app:tabIndicatorColor="@color/bright_grey"
+        app:tabMode="scrollable"
+        app:tabSelectedTextColor="@color/transparent_black"
+        app:tabTextAppearance="@style/tab_text"
+        app:tabTextColor="@color/dark_grey">
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/gameAll_tv"
-            android:background="@color/blue"/>
+            android:background="@color/blue"
+            android:text="@string/gameAll_tv" />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
@@ -251,7 +251,7 @@
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:icon="@drawable/tab_basketball_selector"/>
+            android:icon="@drawable/tab_basketball_selector" />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
@@ -263,5 +263,30 @@
             android:layout_height="wrap_content"
             android:icon="@drawable/tab_hockey_selector" />
     </com.google.android.material.tabs.TabLayout>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/game_nothing_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gameTabLo"
+        app:srcCompat="@drawable/ic_no_match" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/game_nothing_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/game_noting_tv"
+        android:textColor="@color/silver"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/game_nothing_iv" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

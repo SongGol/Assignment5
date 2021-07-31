@@ -17,4 +17,5 @@
     <string name="draw">무승부</string>
     <string name="up">이상</string>
     <string name="down">이하</string>
+    <string name="game_noting_tv">베팅 가능한 경기가 없습니다.</string>
 </resources>

@@ -4,11 +4,11 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.assignment5.databinding.ActivityGameBinding
 import com.example.assignment5.models.baseball.BaseBall
-import com.example.assignment5.models.baseball.Response
 import com.example.assignment5.models.basketball.*
 
 import com.google.android.material.tabs.TabLayout
@@ -24,15 +24,13 @@ class GameActivity : AppCompatActivity() {
         var time = 0L
     }
 
-    private var basketBallArray = ArrayList<com.example.assignment5.models.basketball.Response>()
-    private var baseBallArray = ArrayList<com.example.assignment5.models.baseball.Response>()
     private var gameArray = ArrayList<MyResource>()
 
     private var prevTime = System.currentTimeMillis()
     private var mHandler = Handler(Looper.getMainLooper())
     private var mThread = Thread {
         try {
-            while (true) {
+            while (!Thread.interrupted()) {
                 if (System.currentTimeMillis() > prevTime + 1000) {
                     Log.d("GameActivity", System.currentTimeMillis().toString())
                     prevTime = System.currentTimeMillis()
@@ -44,7 +42,7 @@ class GameActivity : AppCompatActivity() {
                 Thread.sleep(200)
             }
         } catch (e: InterruptedException) {
-            e.printStackTrace()
+            Log.d("GameActivity", e.toString())
         }
     }
 
@@ -54,7 +52,9 @@ class GameActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        //
+        //초기화
+        getBaseBallGame("2019-11-26")
+        getBasketBallGame("2019-11-26")
         Log.d("GameActivity", gameArray.size.toString())
 
         customAdapter = CustomAdapter(gameArray, this)
@@ -69,18 +69,40 @@ class GameActivity : AppCompatActivity() {
                 Log.d("GameActivity", if(pos == null) "null" else pos.toString())
 
                 when (pos) {
-                    0 -> 1
+                    0 -> {
+                        binding.gameNothingIv.visibility = View.GONE
+                        binding.gameNothingTv.visibility = View.GONE
+                        gameArray.clear()
+                        getBaseBallGame("2019-11-26")
+                        getBasketBallGame("2019-11-26")
+                    }
                     1 -> {
+                        binding.gameNothingIv.visibility = View.GONE
+                        binding.gameNothingTv.visibility = View.GONE
                         gameArray.clear()
                         getBaseBallGame("2019-11-26")
                     }
-                    2 -> 2
+                    2 -> {
+                        binding.gameNothingIv.visibility = View.VISIBLE
+                        binding.gameNothingTv.visibility = View.VISIBLE
+                        gameArray.clear()
+                    }
                     3 -> {
+                        binding.gameNothingIv.visibility = View.GONE
+                        binding.gameNothingTv.visibility = View.GONE
                         gameArray.clear()
                         getBasketBallGame("2019-11-26")
                     }
-                    4 -> 4
-                    5 -> 5
+                    4 -> {
+                        binding.gameNothingIv.visibility = View.VISIBLE
+                        binding.gameNothingTv.visibility = View.VISIBLE
+                        gameArray.clear()
+                    }
+                    5 -> {
+                        binding.gameNothingIv.visibility = View.VISIBLE
+                        binding.gameNothingTv.visibility = View.VISIBLE
+                        gameArray.clear()
+                    }
                 }
             }
 
@@ -90,15 +112,12 @@ class GameActivity : AppCompatActivity() {
             override fun onTabUnselected(tab: TabLayout.Tab?) {
             }
         })
-    }
 
-    override fun onResume() {
-        super.onResume()
         mThread.start()
     }
 
-    override fun onPause() {
-        super.onPause()
+    override fun onDestroy() {
+        super.onDestroy()
         mThread.interrupt()
     }
 
@@ -112,14 +131,6 @@ class GameActivity : AppCompatActivity() {
                     val result = response.body() as BasketBall
                     for (item in result.response) {
                         if (item.time == "00:00") continue
-                        basketBallArray.add(
-                            Response(
-                            item.country, item.date, item.id,
-                            item.league, item.scores, item.stage,
-                            item.status, item.teams, item.time,
-                            item.timestamp, item.timezone, item.week,
-                                getRemaining(item.time)
-                        ))
                         gameArray.add(
                             MyResource(
                                 item.league.name, item.teams.home.name, item.teams.away.name,
@@ -128,10 +139,8 @@ class GameActivity : AppCompatActivity() {
                             )
                         )
                     }
-
+                    gameArray.sortBy { it.time }
                     customAdapter.notifyDataSetChanged()
-                    Log.d("GameActivity", basketBallArray.size.toString())
-                    Log.d("GameActivity","getBasketBall data - ${basketBallArray[0].teams.home.name}")
                 } else {
                     Log.d("GameActivity","getBasketBall data - Error code ${response}")
                 }
@@ -160,7 +169,7 @@ class GameActivity : AppCompatActivity() {
                             )
                         )
                     }
-
+                    gameArray.sortBy { it.time }
                     customAdapter.notifyDataSetChanged()
                 } else {
                     Log.d("GameActivity","getBasketBall data - Error code ${response}")
@@ -171,6 +180,36 @@ class GameActivity : AppCompatActivity() {
             }
         })
     }
+/*
+    private fun getSoccerGame(date: String) {
+        val soccerInterface = RetrofitClient
+            .getRetrofit(2, getString(R.string.x_rapidapi_key), getString(R.string.x_rapidapi_soccer_host))
+            .create(ISoccer::class.java)
+        soccerInterface.getSoccerGame(date).enqueue(object :  Callback<BaseBall>{
+            override fun onResponse(call: Call<BaseBall>, response: retrofit2.Response<BaseBall>) {
+                if (response.isSuccessful) {
+                    val result = response.body() as BaseBall
+                    for (item in result.response) {
+                        if (item.time == "00:00") continue
+                        gameArray.add(
+                            MyResource(
+                                item.league.name, item.teams.home.name, item.teams.away.name,
+                                item.date, item.time, item.scores.home.total, item.scores.away.total,
+                                2, getRemaining(item.time)
+                            )
+                        )
+                    }
+
+                    customAdapter.notifyDataSetChanged()
+                } else {
+                    Log.d("GameActivity","getBasketBall data - Error code ${response}")
+                }
+            }
+            override fun onFailure(call: Call<BaseBall>, t: Throwable) {
+                Log.d("GameActivity",t.message ?: "통신오류")
+            }
+        })
+    }*/
 
     private fun getRemaining(time: String) : Long{
         val timeHM = time.split(":")

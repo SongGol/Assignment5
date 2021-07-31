@@ -42,6 +42,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginEnd="20dp"
         android:background="@drawable/grey_background"
+        app:layout_constraintHorizontal_weight="5"
         app:layout_constraintBottom_toBottomOf="@id/game_back_btn_iv"
         app:layout_constraintEnd_toStartOf="@id/gameJewelConstraintLo"
         app:layout_constraintStart_toEndOf="@id/game_back_btn_iv"
@@ -52,7 +53,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:gravity="center_vertical|end"
-            android:paddingEnd="5dp"
+            android:paddingEnd="7dp"
             android:textColor="@color/ttada_blue"
             android:textSize="14sp"
             android:textStyle="bold"
@@ -84,9 +85,10 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/gameJewelConstraintLo"
-        android:layout_width="130dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@drawable/grey_background"
+        app:layout_constraintHorizontal_weight="4"
         app:layout_constraintBottom_toBottomOf="@id/game_back_btn_iv"
         app:layout_constraintEnd_toEndOf="@id/game_gl_end"
         app:layout_constraintStart_toEndOf="@id/gameCoinConstraintLo"
@@ -97,7 +99,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:gravity="center_vertical|end"
-            android:paddingEnd="5dp"
+            android:paddingEnd="7dp"
             android:textColor="@color/ttada_blue"
             android:textSize="14sp"
             android:textStyle="bold"
@@ -122,10 +124,10 @@
         android:id="@+id/game_jewel_iv"
         android:layout_width="40dp"
         android:layout_height="0dp"
-        android:layout_marginEnd="100dp"
+        android:layout_marginStart="10dp"
         app:layout_constraintBottom_toBottomOf="@id/gameJewelConstraintLo"
-        app:layout_constraintEnd_toEndOf="@id/gameJewelConstraintLo"
         app:layout_constraintTop_toTopOf="@id/gameJewelConstraintLo"
+        app:layout_constraintStart_toEndOf="@id/gameCoinConstraintLo"
         app:srcCompat="@drawable/ic_jewel" />
 
     <androidx.appcompat.widget.AppCompatTextView

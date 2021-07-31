@@ -17,5 +17,9 @@
     <string name="draw">무승부</string>
     <string name="up">이상</string>
     <string name="down">이하</string>
+    <string name="playMessageTv">큰 거 한방 터져라!</string>
+    <string name="playPredictTv">전세계 경기 결과를 예측하라!</string>
     <string name="game_noting_tv">베팅 가능한 경기가 없습니다.</string>
+    <string name="playAdTv">내 손 안의 스포츠 세상</string>
+    <string name="playAdOpenTv">모바일 승부 예측 따다 오픈!</string>
 </resources>

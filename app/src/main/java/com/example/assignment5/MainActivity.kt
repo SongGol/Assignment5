@@ -10,6 +10,9 @@ import com.kakao.sdk.user.UserApiClient
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+    private var name: String? = null
+    private var email: String? = null
+    private var id: Long = 0
     private var backPressedTime: Long = 0L
 
     companion object {
@@ -28,8 +31,14 @@ class MainActivity : AppCompatActivity() {
 
         //시작시 play프레그먼트 선택
         binding.mainBottomNavigationView.menu.findItem(R.id.main_play).isChecked = true
+        val bundle = Bundle(3)
+        bundle.putString("email", email)
+        bundle.putString("name", name)
+        bundle.putLong("id", id)
+        val fragment = PlayFragment()
+        fragment.arguments = bundle
         supportFragmentManager.beginTransaction().apply {
-            replace(binding.mainFrameLayout.id, PlayFragment())
+            replace(binding.mainFrameLayout.id, fragment)
             addToBackStack(null)
             commit()
         }
@@ -38,8 +47,14 @@ class MainActivity : AppCompatActivity() {
             when(it.itemId) {
                 R.id.main_play -> {
                     Log.d("bottom navigation", "play")
+                    val bundle = Bundle(3)
+                    bundle.putString("email", email)
+                    bundle.putString("name", name)
+                    bundle.putLong("id", id)
+                    val fragment = PlayFragment()
+                    fragment.arguments = bundle
                     supportFragmentManager.beginTransaction().apply {
-                        replace(binding.mainFrameLayout.id, PlayFragment())
+                        replace(binding.mainFrameLayout.id, fragment)
                         //addToBackStack(PLAY)
                         commit()
                     }
@@ -59,8 +74,14 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.main_setting -> {
                     Log.d("bottom navigation", "setting")
+                    val bundle = Bundle(3)
+                    bundle.putString("email", email)
+                    bundle.putString("name", name)
+                    bundle.putLong("id", id)
+                    val fragment = SettingFragment()
+                    fragment.arguments = bundle
                     supportFragmentManager.beginTransaction().apply {
-                        replace(binding.mainFrameLayout.id, SettingFragment())
+                        replace(binding.mainFrameLayout.id, fragment)
                         //addToBackStack(SETTING)
                         commit()
                     }
@@ -86,6 +107,9 @@ class MainActivity : AppCompatActivity() {
                         "\n이메일: ${user.kakaoAccount?.email}" +
                         "\n닉네임: ${user.kakaoAccount?.profile?.nickname}" +
                         "\n프로필사진: ${user.kakaoAccount?.profile?.thumbnailImageUrl}")
+                name = user.kakaoAccount?.profile?.nickname
+                email = user.kakaoAccount?.email
+                id = user.id
             }
         }
     }

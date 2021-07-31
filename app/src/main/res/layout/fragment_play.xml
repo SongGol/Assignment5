@@ -3,17 +3,122 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/bright_grey">
 
-    <TextView
-        android:id="@+id/textView3"
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/playGlStart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="play"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="20dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/playGlEnd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="20dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/playGlTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="20dp" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/playCoinConstraintLo"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/white_background"
+        app:layout_constraintHorizontal_weight="5"
+        app:layout_constraintEnd_toStartOf="@id/gameJewelConstraintLo"
+        app:layout_constraintStart_toEndOf="@id/playGlStart"
+        app:layout_constraintTop_toTopOf="@id/playGlTop">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/game_coin_tv"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center_vertical|end"
+            android:paddingEnd="7dp"
+            android:textColor="@color/ttada_blue"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/game_coin_add_iv"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="10000"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/game_coin_add_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_add_circle" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/game_coin_iv"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        app:layout_constraintBottom_toBottomOf="@+id/playCoinConstraintLo"
+        app:layout_constraintStart_toStartOf="@id/playCoinConstraintLo"
+        app:layout_constraintTop_toTopOf="@+id/playGlTop"
+        app:srcCompat="@drawable/ic_coin" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/gameJewelConstraintLo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/white_background"
+        app:layout_constraintHorizontal_weight="4"
+        app:layout_constraintEnd_toEndOf="@id/playGlEnd"
+        app:layout_constraintStart_toEndOf="@id/playCoinConstraintLo"
+        app:layout_constraintTop_toTopOf="@id/playGlTop">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/game_jewel_tv"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center_vertical|end"
+            android:paddingEnd="7dp"
+            android:textColor="@color/ttada_blue"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintHorizontal_weight="4"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/game_jewel_add_iv"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="0"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/game_jewel_add_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_add_circle" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/game_jewel_iv"
+        android:layout_width="40dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="10dp"
+        app:layout_constraintStart_toEndOf="@id/playCoinConstraintLo"
+        app:layout_constraintBottom_toBottomOf="@id/gameJewelConstraintLo"
+        app:layout_constraintTop_toTopOf="@id/gameJewelConstraintLo"
+        app:srcCompat="@drawable/ic_jewel" />
 
     <Button
         android:id="@+id/button"
@@ -24,4 +129,222 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/playProfileIv"
+        android:layout_width="wrap_content"
+        android:layout_height="80dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="@+id/playGlStart"
+        app:layout_constraintTop_toBottomOf="@+id/playCoinConstraintLo"
+        app:srcCompat="@drawable/ic_picture_default" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/playNameTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="7dp"
+        android:textSize="15sp"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/playMessageTv"
+        app:layout_constraintStart_toStartOf="@+id/playMessageTv"
+        tools:text="이름"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/playMessageTv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:text="@string/playMessageTv"
+        android:textColor="@color/dark_grey"
+        android:textSize="13sp"
+        android:background="@drawable/white_background"
+        android:padding="5dp"
+        android:paddingStart="10dp"
+        android:layout_marginEnd="40dp"
+        app:layout_constraintBottom_toBottomOf="@+id/playProfileIv"
+        app:layout_constraintEnd_toStartOf="@+id/playTalkIv"
+        app:layout_constraintStart_toEndOf="@+id/playProfileIv" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/playTalkIv"
+        android:layout_width="wrap_content"
+        android:layout_height="70dp"
+        app:layout_constraintBottom_toBottomOf="@+id/playProfileIv"
+        app:layout_constraintEnd_toStartOf="@+id/playGlEnd"
+        app:layout_constraintTop_toTopOf="@+id/playProfileIv"
+        app:srcCompat="@drawable/ic_talk" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/white_background"
+        android:padding="10dp"
+        app:layout_constraintStart_toStartOf="@+id/playGlStart"
+        app:layout_constraintEnd_toEndOf="@id/playGlEnd"
+        app:layout_constraintTop_toBottomOf="@+id/playProfileIv">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/playPredictTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/playPredictTv"
+            android:textColor="@color/dark_grey"
+            android:textSize="13sp"
+            app:layout_constraintBottom_toTopOf="@id/playTtadaTv"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/playTtadaTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/game_ttada_tv"
+            android:textSize="26sp"
+            android:textColor="@color/blue"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="@+id/playPredictTv"
+            app:layout_constraintTop_toBottomOf="@+id/playPredictTv" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/playTtadaIv"
+            android:layout_width="140dp"
+            android:layout_height="120dp"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/playPredictTv"
+            app:srcCompat="@drawable/ic_ttada" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/playSimpleViewLo"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:background="@color/bright_grey"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/playTtadaIv">
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/playAdLo"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:padding="0dp"
+        android:background="@drawable/border_round_10"
+        android:backgroundTint="@color/naver_green"
+        android:layout_marginBottom="5dp"
+        app:layout_constraintBottom_toTopOf="@+id/playHsv"
+        app:layout_constraintEnd_toStartOf="@+id/playGlEnd"
+        app:layout_constraintStart_toStartOf="@+id/playGlStart">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/playAdTv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/playAdTv"
+            android:textColor="@color/white"
+            android:textSize="11sp"
+            app:layout_constraintBottom_toTopOf="@+id/playAdOpenTv"
+            app:layout_constraintEnd_toEndOf="@+id/playAdOpenTv"
+            app:layout_constraintEnd_toStartOf="@+id/playCelebrityIv"
+            app:layout_constraintStart_toStartOf="@+id/playAdOpenTv"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/playAdOpenTv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/playAdOpenTv"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="3dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/playCelebrityIv"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/playAdTv" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/playCelebrityIv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@drawable/ic_shiny" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <HorizontalScrollView
+        android:id="@+id/playHsv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        android:layout_marginBottom="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="20dp"
+                app:srcCompat="@drawable/ic_cafe" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                app:srcCompat="@drawable/ic_match"
+                android:layout_marginStart="20dp"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="20dp"
+                app:srcCompat="@drawable/ic_check" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="20dp"
+                app:srcCompat="@drawable/ic_mission" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="20dp"
+                app:srcCompat="@drawable/ic_rotto" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="20dp"
+                app:srcCompat="@drawable/ic_campain" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                app:srcCompat="@drawable/ic_identify" />
+        </LinearLayout>
+    </HorizontalScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

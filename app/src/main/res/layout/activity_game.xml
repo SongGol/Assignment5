@@ -84,7 +84,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/gameJewelConstraintLo"
-        android:layout_width="0dp"
+        android:layout_width="130dp"
         android:layout_height="wrap_content"
         android:background="@drawable/grey_background"
         app:layout_constraintBottom_toBottomOf="@id/game_back_btn_iv"
@@ -122,10 +122,9 @@
         android:id="@+id/game_jewel_iv"
         android:layout_width="40dp"
         android:layout_height="0dp"
-        android:layout_marginStart="5dp"
+        android:layout_marginEnd="100dp"
         app:layout_constraintBottom_toBottomOf="@id/gameJewelConstraintLo"
-        app:layout_constraintStart_toStartOf="@id/gameJewelConstraintLo"
-        app:layout_constraintEnd_toStartOf="@id/gameJewelConstraintLo"
+        app:layout_constraintEnd_toEndOf="@id/gameJewelConstraintLo"
         app:layout_constraintTop_toTopOf="@id/gameJewelConstraintLo"
         app:srcCompat="@drawable/ic_jewel" />
 

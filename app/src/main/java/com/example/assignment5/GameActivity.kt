@@ -1,6 +1,8 @@
 package com.example.assignment5
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,6 +16,28 @@ class GameActivity : AppCompatActivity() {
     private lateinit var binding: ActivityGameBinding
     private lateinit var customAdapter: CustomAdapter
     private var gameArray = ArrayList<Response>()
+
+    private var prevTime = System.currentTimeMillis()
+    private var mHandler = Handler(Looper.getMainLooper())
+    private var mThread = Thread {
+        try {
+            while (true) {
+                if (System.currentTimeMillis() > prevTime + 1000) {
+                    Log.d("GameActivity", System.currentTimeMillis().toString())
+                    prevTime = System.currentTimeMillis()
+                    for (item in gameArray) {
+                        item.remaining -= 1
+                    }
+                    mHandler.post {
+                        customAdapter.notifyDataSetChanged()
+                    }
+                }
+                Thread.sleep(200)
+            }
+        } catch (e: InterruptedException) {
+            e.printStackTrace()
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +59,16 @@ class GameActivity : AppCompatActivity() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        mThread.start()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        mThread.interrupt()
+    }
+
     private fun getBasketBallGame(date: String) {
         val basketballInterface = RetrofitClient
                             .getRetrofit(1, getString(R.string.x_rapidapi_key), getString(R.string.x_rapidapi_basket_host))
@@ -44,12 +78,14 @@ class GameActivity : AppCompatActivity() {
                 if (response.isSuccessful) {
                     val result = response.body() as BasketBall
                     for (item in result.response) {
+                        if (item.time == "00:00") continue
                         gameArray.add(
                             Response(
                             item.country, item.date, item.id,
                             item.league, item.scores, item.stage,
                             item.status, item.teams, item.time,
-                            item.timestamp, item.timezone, item.week
+                            item.timestamp, item.timezone, item.week,
+                                getRemaining(item.time)
                         ))
                     }
 
@@ -64,6 +100,16 @@ class GameActivity : AppCompatActivity() {
                 Log.d("GameActivity",t.message ?: "통신오류")
             }
         })
+    }
+
+    private fun getRemaining(time: String) : Long{
+        var res: Long = 0L
+        //res += time[0].code.toLong()
+        val timeHM = time.split(":")
+        val hour = timeHM[0].toLong()
+        val minute = timeHM[1].toLong()
+
+        return hour * 3600 + minute * 60
     }
 
     private fun deepCopy(item: Response): Response {

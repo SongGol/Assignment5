@@ -13,5 +13,6 @@ data class Response(
     val timestamp: Int,
     val timezone: String,
     val week: Any?,
+    var remaining: Long,
     var isChecked: ArrayList<Boolean> = arrayListOf(false, false, false, false, false, false, false, false)
 )

@@ -124,6 +124,8 @@ class CustomAdapter(var dataSet: ArrayList<Response>, var context: Context) : Re
             binding.scoreHighRatioTv.text = makeRatio(score, data.scores.away.total)
             //check에 따라 색상 변경
             //initialCheck(data.isChecked)
+            //남은 시간 설정
+            binding.remainingTimeTv.text = makeRemaining(data.remaining)
         }
     }
 
@@ -133,39 +135,47 @@ class CustomAdapter(var dataSet: ArrayList<Response>, var context: Context) : Re
         return formatter.format(value).toString()
     }
 
+    private fun makeRemaining(time: Long) : String{
+        val hour = time / 3600
+        val minute = (time % 3600) / 60
+        val second = (time % 3600) % 60
+
+        return String.format("${hour}:${minute}:${second} 남음")
+    }
+
     private fun initialCheck(data: ArrayList<Boolean>) {
         //homeWin
-        binding.homeWinLo.setBackgroundColor(if (data[0]) ContextCompat.getColor(context, R.color.orange) else ContextCompat.getColor(context, R.color.white))
-        binding.homeWinTv.setTextColor(if (data[0]) ContextCompat.getColor(context, R.color.white) else ContextCompat.getColor(context, R.color.black))
-        binding.homeWinRatioTv.setTextColor(if (data[0]) ContextCompat.getColor(context, R.color.white) else ContextCompat.getColor(context, R.color.black))
+        binding.homeWinLo.background = ContextCompat.getDrawable(context, if(data[0]) R.drawable.selected_item else R.drawable.grey_border)
+        binding.homeWinTv.setTextColor(ContextCompat.getColor(context, if (data[0]) R.color.white else R.color.black))
+        binding.homeWinRatioTv.setTextColor(ContextCompat.getColor(context, if (data[0]) R.color.white else R.color.black))
         //draw
-        binding.drawTopLo.setBackgroundColor(if (data[0]) ContextCompat.getColor(context, R.color.orange) else ContextCompat.getColor(context, R.color.white))
-        binding.drawTopTv.setTextColor(if (data[0]) ContextCompat.getColor(context, R.color.white) else ContextCompat.getColor(context, R.color.black))
-        binding.drawRatioTv.setTextColor(if (data[0]) ContextCompat.getColor(context, R.color.white) else ContextCompat.getColor(context, R.color.black))
+        binding.drawTopLo.background = ContextCompat.getDrawable(context, if(data[1]) R.drawable.selected_item else R.drawable.grey_border)
+        binding.drawTopTv.setTextColor(ContextCompat.getColor(context, if (data[1]) R.color.white else R.color.black))
+        binding.drawRatioTv.setTextColor(ContextCompat.getColor(context, if (data[1]) R.color.white else R.color.black))
         //awayWin
-        binding.awayWinLo.setBackgroundColor(if (data[0]) ContextCompat.getColor(context, R.color.orange) else ContextCompat.getColor(context, R.color.white))
-        binding.awayWinTv.setTextColor(if (data[0]) ContextCompat.getColor(context, R.color.white) else ContextCompat.getColor(context, R.color.black))
-        binding.awayWinRatioTv.setTextColor(if (data[0]) ContextCompat.getColor(context, R.color.white) else ContextCompat.getColor(context, R.color.black))
+        binding.awayWinLo.background = ContextCompat.getDrawable(context, if(data[2]) R.drawable.selected_item else R.drawable.grey_border)
+        binding.awayWinTv.setTextColor(ContextCompat.getColor(context, if (data[2]) R.color.white else R.color.black))
+        binding.awayWinRatioTv.setTextColor(ContextCompat.getColor(context, if (data[2]) R.color.white else R.color.black))
         //handHome
-        binding.handWinLo.setBackgroundColor(if (data[0]) ContextCompat.getColor(context, R.color.orange) else ContextCompat.getColor(context, R.color.white))
-        binding.handHomeWinTv.setTextColor(if (data[0]) ContextCompat.getColor(context, R.color.white) else ContextCompat.getColor(context, R.color.black))
-        binding.handHomeWinRatioTv.setTextColor(if (data[0]) ContextCompat.getColor(context, R.color.white) else ContextCompat.getColor(context, R.color.black))
+        binding.handWinLo.background = ContextCompat.getDrawable(context, if(data[3]) R.drawable.selected_item else R.drawable.grey_border)
+        binding.handHomeWinTv.setTextColor(ContextCompat.getColor(context, if (data[3]) R.color.white else R.color.black))
+        binding.handHomeWinRatioTv.setTextColor(ContextCompat.getColor(context, if (data[3]) R.color.white else R.color.black))
         //handDraw
-        binding.handDrawLo.setBackgroundColor(if (data[0]) ContextCompat.getColor(context, R.color.orange) else ContextCompat.getColor(context, R.color.white))
-        binding.handDrawTv.setTextColor(if (data[0]) ContextCompat.getColor(context, R.color.white) else ContextCompat.getColor(context, R.color.black))
-        binding.handDrawRatioTv.setTextColor(if (data[0]) ContextCompat.getColor(context, R.color.white) else ContextCompat.getColor(context, R.color.black))
+        binding.handDrawLo.background = ContextCompat.getDrawable(context, if(data[4]) R.drawable.selected_item else R.drawable.grey_border)
+        binding.handDrawTv.setTextColor(ContextCompat.getColor(context, if (data[4]) R.color.white else R.color.black))
+        binding.handDrawRatioTv.setTextColor(ContextCompat.getColor(context, if (data[4]) R.color.white else R.color.black))
         //handAway
-        binding.handAwayWinLo.setBackgroundColor(if (data[0]) ContextCompat.getColor(context, R.color.orange) else ContextCompat.getColor(context, R.color.white))
-        binding.handAwayWinTv.setTextColor(if (data[0]) ContextCompat.getColor(context, R.color.white) else ContextCompat.getColor(context, R.color.black))
-        binding.handAwayWinRatioTv.setTextColor(if (data[0]) ContextCompat.getColor(context, R.color.white) else ContextCompat.getColor(context, R.color.black))
+        binding.handAwayWinLo.background = ContextCompat.getDrawable(context, if(data[5]) R.drawable.selected_item else R.drawable.grey_border)
+        binding.handAwayWinTv.setTextColor(ContextCompat.getColor(context, if (data[5]) R.color.white else R.color.black))
+        binding.handAwayWinRatioTv.setTextColor(ContextCompat.getColor(context, if (data[5]) R.color.white else R.color.black))
         //scoreLow
-        binding.scoreSumHighLo.setBackgroundColor(if (data[0]) ContextCompat.getColor(context, R.color.orange) else ContextCompat.getColor(context, R.color.white))
-        binding.scoreHighTv.setTextColor(if (data[0]) ContextCompat.getColor(context, R.color.white) else ContextCompat.getColor(context, R.color.black))
-        binding.scoreHighRatioTv.setTextColor(if (data[0]) ContextCompat.getColor(context, R.color.white) else ContextCompat.getColor(context, R.color.black))
+        binding.scoreSumHighLo.background = ContextCompat.getDrawable(context, if(data[6]) R.drawable.selected_item else R.drawable.grey_border)
+        binding.scoreHighTv.setTextColor(ContextCompat.getColor(context, if (data[6]) R.color.white else R.color.black))
+        binding.scoreHighRatioTv.setTextColor(ContextCompat.getColor(context, if (data[6]) R.color.white else R.color.black))
         //scoreHigh
-        binding.scoreSumLowLo.setBackgroundColor(if (data[0]) ContextCompat.getColor(context, R.color.orange) else ContextCompat.getColor(context, R.color.white))
-        binding.scoreLowTv.setTextColor(if (data[0]) ContextCompat.getColor(context, R.color.white) else ContextCompat.getColor(context, R.color.black))
-        binding.scoreLowRatioTv.setTextColor(if (data[0]) ContextCompat.getColor(context, R.color.white) else ContextCompat.getColor(context, R.color.black))
+        binding.scoreSumLowLo.background = ContextCompat.getDrawable(context, if(data[7]) R.drawable.selected_item else R.drawable.grey_border)
+        binding.scoreLowTv.setTextColor(ContextCompat.getColor(context, if (data[7]) R.color.white else R.color.black))
+        binding.scoreLowRatioTv.setTextColor(ContextCompat.getColor(context, if (data[7]) R.color.white else R.color.black))
     }
 }
 

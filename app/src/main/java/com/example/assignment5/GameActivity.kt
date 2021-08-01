@@ -13,12 +13,16 @@ import com.example.assignment5.models.basketball.*
 
 import com.google.android.material.tabs.TabLayout
 import com.google.gson.Gson
+import com.google.gson.JsonObject
 import retrofit2.Call
 import retrofit2.Callback
 
 class GameActivity : AppCompatActivity() {
     private lateinit var binding: ActivityGameBinding
     private lateinit var customAdapter: CustomAdapter
+    private lateinit var email: String
+    private var coin = 10000
+    private var jewel = 0
 
     companion object {
         var time = 0L
@@ -52,6 +56,8 @@ class GameActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
+        email = intent.getStringExtra("email")!!
+        getTtadaUser(email!!)
         //초기화
         getBaseBallGame("2019-11-26")
         getBasketBallGame("2019-11-26")
@@ -112,6 +118,14 @@ class GameActivity : AppCompatActivity() {
             override fun onTabUnselected(tab: TabLayout.Tab?) {
             }
         })
+
+        binding.gameCoinAddIv.setOnClickListener {
+            putTtadaUser(TtadaUser(email?:"", coin + 1000, jewel))
+        }
+
+        binding.gameJewelAddIv.setOnClickListener {
+            putTtadaUser(TtadaUser(email?:"", coin, jewel + 1000))
+        }
 
         mThread.start()
     }
@@ -177,6 +191,51 @@ class GameActivity : AppCompatActivity() {
             }
             override fun onFailure(call: Call<BaseBall>, t: Throwable) {
                 Log.d("GameActivity",t.message ?: "통신오류")
+            }
+        })
+    }
+
+    private fun getTtadaUser(email: String) {
+        val ttadaInterface = RetrofitClientTtada.tRetrofit.create(ITtadaUser::class.java)
+        ttadaInterface.getUser(email).enqueue(object : Callback<JsonObject> {
+            override fun onResponse(call: Call<JsonObject>, response: retrofit2.Response<JsonObject>) {
+                if (response.isSuccessful) {
+                    Log.d("PlayFragment GET", response.body().toString())
+                    val result = Gson().fromJson(response.body(), TtadaUser::class.java)
+
+                    coin = result.userCoin
+                    jewel = result.userJewel
+
+                    binding.gameCoinTv.text = makeDecimal(coin)
+                    binding.gameJewelTv.text = makeDecimal(jewel)
+
+                    Log.d("PlayFragment", result.toString())
+                } else {
+                    //초기에 값이 없을 때
+                    putTtadaUser(TtadaUser(email))
+                    Log.d("PlayFragment","User Data - Error code ${response}")
+                }
+            }
+            override fun onFailure(call: Call<JsonObject>, t: Throwable) {
+                Log.d("PlayFragment",t.message ?: "통신오류")
+            }
+        })
+    }
+
+    private fun putTtadaUser(user: TtadaUser){
+        val ttadaInterface = RetrofitClientTtada.tRetrofit.create(ITtadaUser::class.java)
+        ttadaInterface.putUser(user).enqueue(object : Callback<JsonObject> {
+            override fun onResponse(call: Call<JsonObject>, response: retrofit2.Response<JsonObject>) {
+                if (response.isSuccessful) {
+                    Log.d("PlayFragment reponse body", response.body().toString())
+
+                    getTtadaUser(user.userEmail)
+                } else {
+                    Log.d("PlayFragment","getBasketBall data - Error code ${response}")
+                }
+            }
+            override fun onFailure(call: Call<JsonObject>, t: Throwable) {
+                Log.d("PlayFragment",t.message ?: "통신오류")
             }
         })
     }

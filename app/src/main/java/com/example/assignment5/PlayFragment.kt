@@ -58,6 +58,7 @@ class PlayFragment : Fragment() {
 
         binding.button.setOnClickListener {
             val intent = Intent(activity, GameActivity::class.java)
+            intent.putExtra("email", email)
             startActivity(intent)
         }
 
@@ -119,10 +120,10 @@ class PlayFragment : Fragment() {
             }
         })
     }
+}
 
-    fun makeDecimal(amount: Int) : String {
-        val value = if (amount < 0) -amount else amount
-        val formatter = DecimalFormat("###,###,###")
-        return formatter.format(value)
-    }
+fun makeDecimal(amount: Int) : String {
+    val value = if (amount < 0) -amount else amount
+    val formatter = DecimalFormat("###,###,###")
+    return formatter.format(value)
 }

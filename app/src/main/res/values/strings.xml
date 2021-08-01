@@ -22,4 +22,25 @@
     <string name="game_noting_tv">베팅 가능한 경기가 없습니다.</string>
     <string name="playAdTv">내 손 안의 스포츠 세상</string>
     <string name="playAdOpenTv">모바일 승부 예측 따다 오픈!</string>
+    <string name="ownMoneyTv">보유 재화</string>
+    <string name="dayLossGold">일일 손실 골드</string>
+    <string name="lossCutTv">현재 손실 한도</string>
+    <string name="lossCutNumberTv">-50,000,000</string>
+    <string name="lostCutChangeTv">변경</string>
+    <string name="pushAlarmTv">푸시 알림</string>
+    <string name="soundTv">사운드</string>
+    <string name="soundOnTv">ON</string>
+    <string name="soundOffTv">OFF</string>
+    <string name="versionInfoTv">버전 정보</string>
+    <string name="versionNumTv">1.0.3</string>
+    <string name="couponTv">쿠폰</string>
+    <string name="couponInputTv">입력</string>
+    <string name="useLimitSetTv">이용 제한 기간 설정</string>
+    <string name="useLimitCurrentTv">현재 미설정</string>
+    <string name="limitSetTv">설정</string>
+    <string name="customerCenterTv">고객 센터</string>
+    <string name="termTv">이용 약관</string>
+    <string name="infoTv">심의 정보</string>
+    <string name="zero">0</string>
+    <string name="settingLogoutTv">카카오 로그아웃</string>
 </resources>

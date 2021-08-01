@@ -29,18 +29,36 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        //시작시 play프레그먼트 선택
-        binding.mainBottomNavigationView.menu.findItem(R.id.main_play).isChecked = true
-        val bundle = Bundle(3)
-        bundle.putString("email", email)
-        bundle.putString("name", name)
-        bundle.putLong("id", id)
-        val fragment = PlayFragment()
-        fragment.arguments = bundle
-        supportFragmentManager.beginTransaction().apply {
-            replace(binding.mainFrameLayout.id, fragment)
-            addToBackStack(null)
-            commit()
+        // 사용자 정보 요청 (기본)
+        UserApiClient.instance.me { user, error ->
+            if (error != null) {
+                Log.e(ContentValues.TAG, "사용자 정보 요청 실패", error)
+            }
+            else if (user != null) {
+                Log.i(
+                    ContentValues.TAG, "사용자 정보 요청 성공" +
+                            "\n회원번호: ${user.id}" +
+                            "\n이메일: ${user.kakaoAccount?.email}" +
+                            "\n닉네임: ${user.kakaoAccount?.profile?.nickname}" +
+                            "\n프로필사진: ${user.kakaoAccount?.profile?.thumbnailImageUrl}")
+                name = user.kakaoAccount?.profile?.nickname
+                email = user.kakaoAccount?.email
+                id = user.id
+
+                //시작시 play프레그먼트 선택
+                binding.mainBottomNavigationView.menu.findItem(R.id.main_play).isChecked = true
+                val bundle = Bundle(3)
+                bundle.putString("email", email)
+                bundle.putString("name", name)
+                bundle.putLong("id", id)
+                val fragment = PlayFragment()
+                fragment.arguments = bundle
+                supportFragmentManager.beginTransaction().apply {
+                    replace(binding.mainFrameLayout.id, fragment)
+                    addToBackStack(null)
+                    commit()
+                }
+            }
         }
 
         binding.mainBottomNavigationView.setOnItemSelectedListener {
@@ -93,9 +111,14 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+    }
 
+    suspend fun initializeFragment() {
+        getKakaoUserData()
 
-        // 사용자 정보 요청 (기본)
+    }
+
+    suspend fun getKakaoUserData() {
         UserApiClient.instance.me { user, error ->
             if (error != null) {
                 Log.e(ContentValues.TAG, "사용자 정보 요청 실패", error)
@@ -103,10 +126,10 @@ class MainActivity : AppCompatActivity() {
             else if (user != null) {
                 Log.i(
                     ContentValues.TAG, "사용자 정보 요청 성공" +
-                        "\n회원번호: ${user.id}" +
-                        "\n이메일: ${user.kakaoAccount?.email}" +
-                        "\n닉네임: ${user.kakaoAccount?.profile?.nickname}" +
-                        "\n프로필사진: ${user.kakaoAccount?.profile?.thumbnailImageUrl}")
+                            "\n회원번호: ${user.id}" +
+                            "\n이메일: ${user.kakaoAccount?.email}" +
+                            "\n닉네임: ${user.kakaoAccount?.profile?.nickname}" +
+                            "\n프로필사진: ${user.kakaoAccount?.profile?.thumbnailImageUrl}")
                 name = user.kakaoAccount?.profile?.nickname
                 email = user.kakaoAccount?.email
                 id = user.id

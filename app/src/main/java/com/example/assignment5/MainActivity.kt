@@ -2,6 +2,8 @@ package com.example.assignment5
 
 import android.content.ContentValues
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -11,6 +13,7 @@ import com.kakao.sdk.user.UserApiClient
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+    private var mHandler = Handler(Looper.getMainLooper())
     private var name: String? = null
     private var email: String? = null
     private var id: Long = 0
@@ -96,7 +99,9 @@ class MainActivity : AppCompatActivity() {
             email = result.response.email
 
             //시작시 play프레그먼트 선택
-            binding.mainBottomNavigationView.menu.findItem(R.id.main_play).isChecked = true
+            mHandler.post {
+                binding.mainBottomNavigationView.menu.findItem(R.id.main_play).isChecked = true
+            }
             //id = result.response.id.toLong()
             id = 0L
             bundle.putString("email", email)
@@ -132,7 +137,9 @@ class MainActivity : AppCompatActivity() {
                 id = user.id
 
                 //시작시 play프레그먼트 선택
-                binding.mainBottomNavigationView.menu.findItem(R.id.main_play).isChecked = true
+                mHandler.post {
+                    binding.mainBottomNavigationView.menu.findItem(R.id.main_play).isChecked = true
+                }
                 bundle.putString("email", email)
                 bundle.putString("name", name)
                 bundle.putLong("id", id)

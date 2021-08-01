@@ -10,5 +10,6 @@ data class MyResource(
     val awayTotal: Int,
     var type: Int,
     var remaining: Long,
-    var isChecked: ArrayList<Boolean> = arrayListOf(false, false, false, false, false, false, false, false),
+    var betBook: BetBook? = null,
+    var isChecked: ArrayList<Boolean> = arrayListOf(false, false, false, false, false, false, false, false)
     )

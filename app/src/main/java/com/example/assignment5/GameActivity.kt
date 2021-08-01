@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.assignment5.databinding.ActivityGameBinding
 import com.example.assignment5.models.baseball.BaseBall
 import com.example.assignment5.models.basketball.*
+import com.example.assignment5.models.soccer.Soccer
 
 import com.google.android.material.tabs.TabLayout
 import com.google.gson.Gson
@@ -194,7 +195,37 @@ class GameActivity : AppCompatActivity() {
             }
         })
     }
+/*
+    private fun getSoccerGame(date: String) {
+        val soccerInterface = RetrofitClient
+            .getRetrofit(2, getString(R.string.x_rapidapi_key), getString(R.string.x_rapidapi_soccer_host))
+            .create(ISoccer::class.java)
+        soccerInterface.getSoccerGame(date).enqueue(object :  Callback<Soccer>{
+            override fun onResponse(call: Call<Soccer>, response: retrofit2.Response<Soccer>) {
+                if (response.isSuccessful) {
+                    val result = response.body() as Soccer
+                    for (item in result.response) {
+                        if (item.time == "00:00") continue
+                        gameArray.add(
+                            MyResource(
+                                item.league.name, item.teams.home.name, item.teams.away.name,
+                                item.date, item.time, item.scores.home.total, item.scores.away.total,
+                                2, getRemaining(item.time)
+                            )
+                        )
+                    }
 
+                    customAdapter.notifyDataSetChanged()
+                } else {
+                    Log.d("GameActivity","getBasketBall data - Error code ${response}")
+                }
+            }
+            override fun onFailure(call: Call<Soccer>, t: Throwable) {
+                Log.d("GameActivity",t.message ?: "통신오류")
+            }
+        })
+    }
+*/
     private fun getTtadaUser(email: String) {
         val ttadaInterface = RetrofitClientTtada.tRetrofit.create(ITtadaUser::class.java)
         ttadaInterface.getUser(email).enqueue(object : Callback<JsonObject> {
@@ -239,36 +270,6 @@ class GameActivity : AppCompatActivity() {
             }
         })
     }
-/*
-    private fun getSoccerGame(date: String) {
-        val soccerInterface = RetrofitClient
-            .getRetrofit(2, getString(R.string.x_rapidapi_key), getString(R.string.x_rapidapi_soccer_host))
-            .create(ISoccer::class.java)
-        soccerInterface.getSoccerGame(date).enqueue(object :  Callback<BaseBall>{
-            override fun onResponse(call: Call<BaseBall>, response: retrofit2.Response<BaseBall>) {
-                if (response.isSuccessful) {
-                    val result = response.body() as BaseBall
-                    for (item in result.response) {
-                        if (item.time == "00:00") continue
-                        gameArray.add(
-                            MyResource(
-                                item.league.name, item.teams.home.name, item.teams.away.name,
-                                item.date, item.time, item.scores.home.total, item.scores.away.total,
-                                2, getRemaining(item.time)
-                            )
-                        )
-                    }
-
-                    customAdapter.notifyDataSetChanged()
-                } else {
-                    Log.d("GameActivity","getBasketBall data - Error code ${response}")
-                }
-            }
-            override fun onFailure(call: Call<BaseBall>, t: Throwable) {
-                Log.d("GameActivity",t.message ?: "통신오류")
-            }
-        })
-    }*/
 
     private fun getRemaining(time: String) : Long{
         val timeHM = time.split(":")

@@ -14,14 +14,32 @@ import com.kakao.sdk.user.UserApiClient
 import com.nhn.android.naverlogin.OAuthLogin
 import com.nhn.android.naverlogin.OAuthLoginHandler
 
+const val LOGIN = "login"
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
+    private lateinit var mOAuthLoginHandler: OAuthLoginHandler
 
     companion object {
         //네이버 로그인 인스턴스
         val mOAuthLoginModule = OAuthLogin.getInstance()
         var naverAccessToken = ""
+    }
+
+    //카카오 로그인 공통 callback 구성
+    private val callback: (OAuthToken?, Throwable?) -> Unit = { token, error ->
+        if (error != null) {
+            Log.e(TAG, "로그인 실패", error)
+        }
+        else if (token != null) {
+            Log.i(TAG, "로그인 성공 ${token.accessToken}")
+
+            //sharedPreference저장
+            SharedPreferencesManager.putStrValue(this@LoginActivity, LOGIN, "kakao")
+
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,20 +52,6 @@ class LoginActivity : AppCompatActivity() {
         var keyHash = Utility.getKeyHash(this)
         Log.d("HashKey", keyHash)
 
-        //카카오 로그인 공통 callback 구성
-        val callback: (OAuthToken?, Throwable?) -> Unit = { token, error ->
-            if (error != null) {
-                Log.e(TAG, "로그인 실패", error)
-            }
-            else if (token != null) {
-                Log.i(TAG, "로그인 성공 ${token.accessToken}")
-
-                val intent = Intent(this, MainActivity::class.java)
-                intent.putExtra("login", "kakao")
-                startActivity(intent)
-            }
-        }
-
         //네이버 로그인 인스턴스 초기화
         mOAuthLoginModule.init(
             this
@@ -56,7 +60,7 @@ class LoginActivity : AppCompatActivity() {
             ,getString(R.string.app_name)
         )
         //네이버 로그인 핸들러
-        val mOAuthLoginHandler: OAuthLoginHandler = @SuppressLint("HandlerLeak")
+        mOAuthLoginHandler = @SuppressLint("HandlerLeak")
         object : OAuthLoginHandler() {
             override fun run(success: Boolean) {
                 if (success) {
@@ -69,6 +73,9 @@ class LoginActivity : AppCompatActivity() {
                     //mOauthExpires.setText(expiresAt.toString())
                     //mOauthTokenType.setText(tokenType)
                     //mOAuthState.setText(mOAuthLoginModule.getState(this@LoginActivity).toString())
+
+                    //sharedPreference저장
+                    SharedPreferencesManager.putStrValue(this@LoginActivity, LOGIN, "naver")
 
                     val intent = Intent(this@LoginActivity, MainActivity::class.java)
                     intent.putExtra("login", "naver")
@@ -85,8 +92,6 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
-
-
         binding.startKakaoLoginTv.setOnClickListener {
             // 카카오톡이 설치되어 있으면 카카오톡으로 로그인, 아니면 카카오계정으로 로그인
             Log.d("mainActivity", "click")
@@ -100,7 +105,6 @@ class LoginActivity : AppCompatActivity() {
         }
 
         binding.startNaverLoginTv.setOnClickListener {
-
             mOAuthLoginModule.startOauthLoginActivity(this@LoginActivity, mOAuthLoginHandler)
         }
     }
@@ -108,6 +112,15 @@ class LoginActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         //자동 로그인 구현
-
+        val lastLogin = SharedPreferencesManager.getStrValue(this, LOGIN, "none")
+        if (lastLogin == "kakao") {
+            if (UserApiClient.instance.isKakaoTalkLoginAvailable(this)) {
+                UserApiClient.instance.loginWithKakaoTalk(this, callback = callback)
+            } else {
+                UserApiClient.instance.loginWithKakaoAccount(this, callback = callback)
+            }
+        } else if (lastLogin == "naver") {
+            mOAuthLoginModule.startOauthLoginActivity(this@LoginActivity, mOAuthLoginHandler)
+        }
     }
 }

@@ -76,8 +76,8 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/game_coin_iv"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
         app:layout_constraintBottom_toBottomOf="@+id/gameCoinConstraintLo"
         app:layout_constraintStart_toStartOf="@id/gameCoinConstraintLo"
         app:layout_constraintTop_toTopOf="@+id/game_gl_top"

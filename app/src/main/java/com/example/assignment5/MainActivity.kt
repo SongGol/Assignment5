@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
     private var email: String? = null
     private var id: Long = 0
     private var backPressedTime: Long = 0L
-    private var bundle = Bundle(4)
+    private var bundle = Bundle(3)
 
     companion object {
         const val PLAY = "play"
@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(view)
 
         //카카오나 네이버에서 데이터 가져와 초기화
-        initializeFragment(intent?.extras?.getString("login"))
+        initializeFragment(SharedPreferencesManager.getStrValue(this, LOGIN, "none"))
 
         binding.mainBottomNavigationView.setOnItemSelectedListener {
             when(it.itemId) {
@@ -107,7 +107,6 @@ class MainActivity : AppCompatActivity() {
             bundle.putString("email", email)
             bundle.putString("name", name)
             bundle.putLong("id", id)
-            bundle.putString("login", "naver")
 
             val fragment = PlayFragment()
             fragment.arguments = bundle
@@ -143,7 +142,6 @@ class MainActivity : AppCompatActivity() {
                 bundle.putString("email", email)
                 bundle.putString("name", name)
                 bundle.putLong("id", id)
-                bundle.putString("login", "kakao")
 
                 val fragment = PlayFragment()
                 fragment.arguments = bundle

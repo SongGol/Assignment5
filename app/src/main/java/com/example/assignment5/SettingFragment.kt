@@ -29,7 +29,7 @@ class SettingFragment : Fragment() {
         if (bundle != null) {
             name = bundle.getString("name")
             email = bundle.getString("email")
-            login = bundle.getString("login")
+            login = SharedPreferencesManager.getStrValue(activity, LOGIN, "none")
         }
 
         return binding.root
@@ -56,6 +56,8 @@ class SettingFragment : Fragment() {
                     }
                 }
             }
+            //sharedPreference저장
+            SharedPreferencesManager.putStrValue(activity, LOGIN, "none")
 
             Toast.makeText(activity, "로그아웃 하셨습니다.", Toast.LENGTH_SHORT).show()
             activity?.finish()

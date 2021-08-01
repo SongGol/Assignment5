@@ -6,6 +6,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.assignment5.databinding.ActivityMainBinding
+import com.google.gson.Gson
 import com.kakao.sdk.user.UserApiClient
 
 class MainActivity : AppCompatActivity() {
@@ -14,6 +15,7 @@ class MainActivity : AppCompatActivity() {
     private var email: String? = null
     private var id: Long = 0
     private var backPressedTime: Long = 0L
+    private var bundle = Bundle(4)
 
     companion object {
         const val PLAY = "play"
@@ -29,46 +31,13 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        // 사용자 정보 요청 (기본)
-        UserApiClient.instance.me { user, error ->
-            if (error != null) {
-                Log.e(ContentValues.TAG, "사용자 정보 요청 실패", error)
-            }
-            else if (user != null) {
-                Log.i(
-                    ContentValues.TAG, "사용자 정보 요청 성공" +
-                            "\n회원번호: ${user.id}" +
-                            "\n이메일: ${user.kakaoAccount?.email}" +
-                            "\n닉네임: ${user.kakaoAccount?.profile?.nickname}" +
-                            "\n프로필사진: ${user.kakaoAccount?.profile?.thumbnailImageUrl}")
-                name = user.kakaoAccount?.profile?.nickname
-                email = user.kakaoAccount?.email
-                id = user.id
-
-                //시작시 play프레그먼트 선택
-                binding.mainBottomNavigationView.menu.findItem(R.id.main_play).isChecked = true
-                val bundle = Bundle(3)
-                bundle.putString("email", email)
-                bundle.putString("name", name)
-                bundle.putLong("id", id)
-                val fragment = PlayFragment()
-                fragment.arguments = bundle
-                supportFragmentManager.beginTransaction().apply {
-                    replace(binding.mainFrameLayout.id, fragment)
-                    addToBackStack(null)
-                    commit()
-                }
-            }
-        }
+        //카카오나 네이버에서 데이터 가져와 초기화
+        initializeFragment(intent?.extras?.getString("login"))
 
         binding.mainBottomNavigationView.setOnItemSelectedListener {
             when(it.itemId) {
                 R.id.main_play -> {
                     Log.d("bottom navigation", "play")
-                    val bundle = Bundle(3)
-                    bundle.putString("email", email)
-                    bundle.putString("name", name)
-                    bundle.putLong("id", id)
                     val fragment = PlayFragment()
                     fragment.arguments = bundle
                     supportFragmentManager.beginTransaction().apply {
@@ -92,10 +61,6 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.main_setting -> {
                     Log.d("bottom navigation", "setting")
-                    val bundle = Bundle(3)
-                    bundle.putString("email", email)
-                    bundle.putString("name", name)
-                    bundle.putLong("id", id)
                     val fragment = SettingFragment()
                     fragment.arguments = bundle
                     supportFragmentManager.beginTransaction().apply {
@@ -113,12 +78,44 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    suspend fun initializeFragment() {
-        getKakaoUserData()
-
+    private fun initializeFragment(login: String?) {
+        if (login == "naver") {
+            initWithNaver()
+        } else if (login == "kakao") {
+            initWithKakao()
+        }
     }
 
-    suspend fun getKakaoUserData() {
+    private fun initWithNaver() {
+        Thread {
+            NaverProfile.setToken(LoginActivity.naverAccessToken)
+            val response = NaverProfile.getProfile()
+            val result = Gson().fromJson(response, NaverResult::class.java)
+
+            name = result.response.name
+            email = result.response.email
+
+            //시작시 play프레그먼트 선택
+            binding.mainBottomNavigationView.menu.findItem(R.id.main_play).isChecked = true
+            //id = result.response.id.toLong()
+            id = 0L
+            bundle.putString("email", email)
+            bundle.putString("name", name)
+            bundle.putLong("id", id)
+            bundle.putString("login", "naver")
+
+            val fragment = PlayFragment()
+            fragment.arguments = bundle
+            supportFragmentManager.beginTransaction().apply {
+                replace(binding.mainFrameLayout.id, fragment)
+                //addToBackStack(null)
+                commit()
+            }
+        }.start()
+    }
+
+    private fun initWithKakao() {
+        //카카오 사용자 정보 요청 (기본)
         UserApiClient.instance.me { user, error ->
             if (error != null) {
                 Log.e(ContentValues.TAG, "사용자 정보 요청 실패", error)
@@ -133,6 +130,21 @@ class MainActivity : AppCompatActivity() {
                 name = user.kakaoAccount?.profile?.nickname
                 email = user.kakaoAccount?.email
                 id = user.id
+
+                //시작시 play프레그먼트 선택
+                binding.mainBottomNavigationView.menu.findItem(R.id.main_play).isChecked = true
+                bundle.putString("email", email)
+                bundle.putString("name", name)
+                bundle.putLong("id", id)
+                bundle.putString("login", "kakao")
+
+                val fragment = PlayFragment()
+                fragment.arguments = bundle
+                supportFragmentManager.beginTransaction().apply {
+                    replace(binding.mainFrameLayout.id, fragment)
+                    //addToBackStack(null)
+                    commit()
+                }
             }
         }
     }

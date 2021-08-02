@@ -25,12 +25,6 @@ class GameActivity : AppCompatActivity() {
     private var coin = 10000
     private var jewel = 0
 
-    companion object {
-        var time = 0L
-    }
-
-    private var gameArray = ArrayList<MyResource>()
-
     private var prevTime = System.currentTimeMillis()
     private var mHandler = Handler(Looper.getMainLooper())
     private var mThread = Thread {
@@ -39,7 +33,7 @@ class GameActivity : AppCompatActivity() {
                 if (System.currentTimeMillis() > prevTime + 1000) {
                     Log.d("GameActivity", System.currentTimeMillis().toString())
                     prevTime = System.currentTimeMillis()
-                    time++
+                    //time++
                     mHandler.post {
                         customAdapter.notifyDataSetChanged()
                     }
@@ -60,7 +54,7 @@ class GameActivity : AppCompatActivity() {
         email = intent.getStringExtra("email")!!
         getTtadaUser(email!!)
         //초기화
-        getBaseBallGame("2019-11-26")
+        //getBaseBallGame("2019-11-26")
         getBasketBallGame("2019-11-26")
         Log.d("GameActivity", gameArray.size.toString())
 
@@ -271,16 +265,16 @@ class GameActivity : AppCompatActivity() {
         })
     }
 
-    private fun getRemaining(time: String) : Long{
-        val timeHM = time.split(":")
-        val hour = timeHM[0].toLong()
-        val minute = timeHM[1].toLong()
-
-        return hour * 3600 + minute * 60
-    }
-
     private fun deepCopy(item: com.example.assignment5.models.baseball.Response): com.example.assignment5.models.baseball.Response {
         val json = Gson().toJson(item)
         return Gson().fromJson(json, com.example.assignment5.models.baseball.Response::class.java)
     }
+}
+
+fun getRemaining(time: String) : Long{
+    val timeHM = time.split(":")
+    val hour = timeHM[0].toLong()
+    val minute = timeHM[1].toLong()
+
+    return hour * 3600 + minute * 60
 }

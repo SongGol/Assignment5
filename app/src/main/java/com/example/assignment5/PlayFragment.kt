@@ -2,6 +2,8 @@ package com.example.assignment5
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +17,9 @@ import retrofit2.Call
 import retrofit2.Callback
 import java.text.DecimalFormat
 
+var gameArray = ArrayList<MyResource>()
+var time = 0L
+
 class PlayFragment : Fragment() {
     private lateinit var binding: FragmentPlayBinding
     private var name: String? = null
@@ -22,6 +27,26 @@ class PlayFragment : Fragment() {
     private var id: Long = 0
     private var coin = 10000
     private var jewel = 0
+
+    private var prevTime = System.currentTimeMillis()
+    private var mHandler = Handler(Looper.getMainLooper())
+    private var mThread = Thread {
+        try {
+            while (!Thread.interrupted()) {
+                if (System.currentTimeMillis() > prevTime + 1000) {
+                    Log.d("GameActivity", System.currentTimeMillis().toString())
+                    prevTime = System.currentTimeMillis()
+                    time++
+                    mHandler.post {
+                        binding.remainingTimeTv.text = makeRemaining(getRemaining(binding.endTimeTv.text.toString()) - time)
+                    }
+                }
+                Thread.sleep(200)
+            }
+        } catch (e: InterruptedException) {
+            Log.d("GameActivity", e.toString())
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,13 +75,15 @@ class PlayFragment : Fragment() {
             getTtadaUser(email!!)
         }
 
+        getBaseBallGame("2019-11-26")
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.button.setOnClickListener {
+        binding.playGameCv.setOnClickListener {
             val intent = Intent(activity, GameActivity::class.java)
             intent.putExtra("email", email)
             startActivity(intent)
@@ -74,6 +101,11 @@ class PlayFragment : Fragment() {
     override fun onStop() {
         super.onStop()
         if (email != null) putTtadaUser(TtadaUser(email!!, coin, jewel))
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mThread.interrupt()
     }
 
     private fun getTtadaUser(email: String) {
@@ -117,6 +149,48 @@ class PlayFragment : Fragment() {
             }
             override fun onFailure(call: Call<JsonObject>, t: Throwable) {
                 Log.d("PlayFragment",t.message ?: "통신오류")
+            }
+        })
+    }
+
+    private fun getBaseBallGame(date: String) {
+        val baseballInterface = RetrofitClient
+            .getRetrofit(0, getString(R.string.x_rapidapi_key), getString(R.string.x_rapidapi_baseball_host))
+            .create(IBaseBall::class.java)
+        baseballInterface.getBaseBallGame(date).enqueue(object :  Callback<BaseBall>{
+            override fun onResponse(call: Call<BaseBall>, response: retrofit2.Response<BaseBall>) {
+                if (response.isSuccessful) {
+                    val result = response.body() as BaseBall
+                    for (item in result.response) {
+                        if (item.time == "00:00") continue
+                        gameArray.add(
+                            MyResource(
+                                item.league.name, item.teams.home.name, item.teams.away.name,
+                                item.date, item.time, item.scores.home.total, item.scores.away.total,
+                                0, getRemaining(item.time)
+                            )
+                        )
+                    }
+                    gameArray.sortBy { it.time }
+
+                    mHandler.post {
+                        //종목명, 팀명
+                        binding.athleticsNameTv.text = gameArray[0].leagueName
+                        binding.homeTeamTv.text = gameArray[0].homeName
+                        binding.awayTeamTv.text = gameArray[0].awayName
+                        //시간, 날짜
+                        val days = gameArray[0].date.split("T")[0].split("-")
+                        binding.endDateTv.text = "${days[1]}/${days[2]}"
+                        binding.endTimeTv.text = gameArray[0].time
+
+                        mThread.start()
+                    }
+                } else {
+                    Log.d("GameActivity","getBasketBall data - Error code ${response}")
+                }
+            }
+            override fun onFailure(call: Call<BaseBall>, t: Throwable) {
+                Log.d("GameActivity",t.message ?: "통신오류")
             }
         })
     }

@@ -139,7 +139,7 @@ class CustomAdapter(var dataSet: ArrayList<MyResource>, var context: Context) : 
             //check에 따라 색상 변경
             //initialCheck(data.isChecked)
             //남은 시간 설정
-            binding.remainingTimeTv.text = makeRemaining(data.remaining - GameActivity.time)
+            binding.remainingTimeTv.text = makeRemaining(data.remaining - time)
             //모양 변경
             binding.sportIv.setImageResource(when(data.type){
                 0 -> R.drawable.ic_baseball_default
@@ -154,17 +154,6 @@ class CustomAdapter(var dataSet: ArrayList<MyResource>, var context: Context) : 
         val value = target.toDouble() / stand.toDouble()
         val formatter = DecimalFormat("0.00")
         return formatter.format(value).toString()
-    }
-
-    private fun makeRemaining(time: Long) : String{
-        val hour = time / 3600
-        val minute = (time % 3600) / 60
-        val second = (time % 3600) % 60
-
-        val formatter = DecimalFormat("00")
-        formatter.format(hour)
-
-        return String.format("${formatter.format(hour)}:${formatter.format(minute)}:${formatter.format(second)} 남음")
     }
 
     private fun initialCheck(data: ArrayList<Boolean>) {
@@ -201,6 +190,17 @@ class CustomAdapter(var dataSet: ArrayList<MyResource>, var context: Context) : 
         binding.scoreLowTv.setTextColor(ContextCompat.getColor(context, if (data[7]) R.color.white else R.color.black))
         binding.scoreLowRatioTv.setTextColor(ContextCompat.getColor(context, if (data[7]) R.color.white else R.color.black))
     }
+}
+
+fun makeRemaining(time: Long) : String{
+    val hour = time / 3600
+    val minute = (time % 3600) / 60
+    val second = (time % 3600) % 60
+
+    val formatter = DecimalFormat("00")
+    formatter.format(hour)
+
+    return String.format("${formatter.format(hour)}:${formatter.format(minute)}:${formatter.format(second)} 남음")
 }
 
 class RecyclerViewDecoration(private val divHeight: Int) : RecyclerView.ItemDecoration() {

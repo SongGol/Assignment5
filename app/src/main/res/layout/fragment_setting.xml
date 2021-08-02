@@ -33,6 +33,14 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_end="20dp" />
 
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/settingGlCenter"
+        android:layout_width="1dp"
+        android:layout_height="1dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/settingProfileIv"
         android:layout_width="90dp"
@@ -47,7 +55,7 @@
         android:id="@+id/settingNameTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="16sp"
+        android:textSize="18sp"
         android:textColor="@color/black"
         android:textStyle="bold"
         android:layout_marginBottom="7dp"
@@ -68,7 +76,7 @@
         android:paddingStart="12dp"
         android:text="@string/playMessageTv"
         android:textColor="@color/dark_grey"
-        android:textSize="13sp"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@+id/settingProfileIv"
         app:layout_constraintEnd_toStartOf="@+id/settingGlEnd"
         app:layout_constraintStart_toEndOf="@+id/settingProfileIv"
@@ -80,6 +88,7 @@
         android:id="@+id/logoutCv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="@+id/settingMessageTv"
         app:layout_constraintStart_toStartOf="@+id/settingProfileIv"
         app:layout_constraintTop_toBottomOf="@+id/settingProfileIv"
@@ -120,7 +129,7 @@
         android:id="@+id/settingBottom"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="25dp"
         android:background="@color/bright_grey"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -131,189 +140,211 @@
 
     </androidx.appcompat.widget.AppCompatTextView>
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/ownMoneyTv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="@string/ownMoneyTv"
-        android:textSize="14sp"
-        android:textColor="@color/ttada_blue"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/settingGlStart"
-        app:layout_constraintTop_toTopOf="@+id/settingBottom" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/gameCoinTv"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        android:background="@drawable/white_background"
-        android:gravity="center_vertical|end"
-        android:padding="5dp"
-        android:paddingStart="10dp"
-        android:paddingEnd="10dp"
-        android:layout_marginTop="5dp"
-        app:layout_constraintHorizontal_weight="1"
-        app:layout_constraintEnd_toStartOf="@id/gameJewelTv"
-        app:layout_constraintStart_toEndOf="@id/settingGlStart"
-        app:layout_constraintTop_toBottomOf="@id/ownMoneyTv"
-        tools:text="10000"/>
-
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/gameCoinIv"
-        android:layout_width="32dp"
-        android:layout_height="34dp"
-        app:layout_constraintBottom_toBottomOf="@+id/gameCoinTv"
-        app:layout_constraintStart_toStartOf="@id/gameCoinTv"
-        app:layout_constraintTop_toTopOf="@+id/gameCoinTv"
-        app:srcCompat="@drawable/ic_coin" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/gameJewelTv"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="20dp"
-        android:background="@drawable/white_background"
-        android:gravity="center_vertical|end"
-        android:padding="5dp"
-        android:paddingStart="10dp"
-        android:paddingEnd="10dp"
-        android:textColor="@color/black"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/gameCoinTv"
-        app:layout_constraintEnd_toEndOf="@id/settingGlEnd"
-        app:layout_constraintHorizontal_weight="1"
-        app:layout_constraintStart_toEndOf="@id/gameCoinTv"
-        app:layout_constraintTop_toTopOf="@id/gameCoinTv"
-        tools:text="0" />
-
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/gameJewelIv"
-        android:layout_width="40dp"
-        android:layout_height="42dp"
-        android:paddingStart="10dp"
-        app:layout_constraintStart_toStartOf="@id/gameJewelTv"
-        app:layout_constraintEnd_toStartOf="@id/gameJewelTv"
-        app:layout_constraintBottom_toBottomOf="@id/gameJewelTv"
-        app:layout_constraintTop_toTopOf="@id/gameJewelTv"
-        app:srcCompat="@drawable/ic_jewel" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/dayLossGoldTv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/dayLossGold"
-        android:textColor="@color/ttada_blue"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        android:layout_marginTop="30dp"
-        app:layout_constraintStart_toStartOf="@+id/settingGlStart"
-        app:layout_constraintTop_toBottomOf="@id/gameCoinTv" />
-
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/lossGoldHelperIv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        app:layout_constraintBottom_toBottomOf="@+id/dayLossGoldTv"
-        app:layout_constraintStart_toEndOf="@+id/dayLossGoldTv"
-        app:layout_constraintTop_toTopOf="@+id/dayLossGoldTv"
-        app:srcCompat="@drawable/ic_baseline_help_outline_24" />
-
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/lossLo"
+        android:id="@+id/ownLo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
-        android:background="@drawable/border_round_20"
-        android:backgroundTint="@color/white"
-        android:layout_marginTop="5dp"
-        app:layout_constraintEnd_toStartOf="@id/lostCutChangeTv"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="@+id/settingGlStart"
-        app:layout_constraintTop_toBottomOf="@+id/dayLossGoldTv">
+        app:layout_constraintStart_toStartOf="@id/settingGlStart"
+        app:layout_constraintEnd_toEndOf="@id/settingGlEnd"
+        app:layout_constraintTop_toTopOf="@id/settingBottom"
+        app:layout_constraintBottom_toTopOf="@id/lossWrapLo">
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/lossCoinTv"
+            android:id="@+id/ownMoneyTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ownMoneyTv"
+            android:textSize="14sp"
+            android:textColor="@color/ttada_blue"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/gameCoinTv"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/white_background"
             android:gravity="center_vertical|end"
             android:padding="5dp"
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
-            android:text="@string/zero"
             android:textColor="@color/black"
             android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/lossCutLo"
+            app:layout_constraintEnd_toStartOf="@id/gameJewelTv"
+            app:layout_constraintHorizontal_weight="1"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ownMoneyTv"
+            tools:text="10000" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/gameCoinIv"
+            android:layout_width="34dp"
+            android:layout_height="32dp"
+            app:layout_constraintBottom_toBottomOf="@+id/gameCoinTv"
+            app:layout_constraintStart_toStartOf="@id/gameCoinTv"
+            app:layout_constraintTop_toTopOf="@+id/gameCoinTv"
+            app:srcCompat="@drawable/ic_coin" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/gameJewelTv"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/white_background"
+            android:gravity="center_vertical|end"
+            android:padding="5dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/gameCoinTv"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@id/gameCoinTv"
+            app:layout_constraintTop_toTopOf="@id/gameCoinTv"
             tools:text="0" />
 
-        <LinearLayout
-            android:id="@+id/lossCutLo"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_margin="5dp"
-            android:background="@drawable/border_round_20"
-            android:backgroundTint="@color/red"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/lossCoinTv"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/lossCutTv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:backgroundTint="@color/red"
-                android:paddingStart="5dp"
-                android:text="@string/lossCutTv"
-                android:textColor="@color/white"
-                android:textSize="12sp" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/lossCutNumberTv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="7dp"
-                android:text="@string/lossCutNumberTv"
-                android:textColor="@color/white"
-                android:textSize="12sp"
-                android:textStyle="bold" />
-        </LinearLayout>
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/gameJewelIv"
+            android:layout_width="42dp"
+            android:layout_height="32dp"
+            android:paddingStart="10dp"
+            app:layout_constraintStart_toStartOf="@id/gameJewelTv"
+            app:layout_constraintEnd_toStartOf="@id/gameJewelTv"
+            app:layout_constraintBottom_toBottomOf="@id/gameJewelTv"
+            app:layout_constraintTop_toTopOf="@id/gameJewelTv"
+            app:srcCompat="@drawable/ic_jewel" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/lossCoinIv"
-        android:layout_width="32dp"
-        android:layout_height="34dp"
-        app:layout_constraintBottom_toBottomOf="@+id/lossLo"
-        app:layout_constraintStart_toStartOf="@id/lossLo"
-        app:layout_constraintTop_toTopOf="@+id/lossLo"
-        app:srcCompat="@drawable/ic_coin" />
-
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/lostCutChangeTv"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/lossWrapLo"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/blue_round_border"
-        android:text="@string/lostCutChangeTv"
-        android:textColor="@color/ttada_blue"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@+id/lossLo"
-        app:layout_constraintEnd_toStartOf="@+id/settingGlEnd"
-        app:layout_constraintTop_toBottomOf="@+id/dayLossGoldTv" />
+        app:layout_constraintStart_toStartOf="@id/settingGlStart"
+        app:layout_constraintEnd_toEndOf="@id/settingGlEnd"
+        app:layout_constraintTop_toBottomOf="@id/ownLo"
+        app:layout_constraintBottom_toTopOf="@id/pushAlarmTv">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/dayLossGoldTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/dayLossGold"
+            android:textColor="@color/ttada_blue"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/lossGoldHelperIv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            app:layout_constraintBottom_toBottomOf="@+id/dayLossGoldTv"
+            app:layout_constraintStart_toEndOf="@+id/dayLossGoldTv"
+            app:layout_constraintTop_toTopOf="@+id/dayLossGoldTv"
+            app:srcCompat="@drawable/ic_baseline_help_outline_24" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/lossLo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/border_round_20"
+            android:backgroundTint="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/lostCutChangeTv"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/dayLossGoldTv">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/lossCoinTv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical|end"
+                android:padding="5dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:text="@string/zero"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/lossCutLo"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="0" />
+
+            <LinearLayout
+                android:id="@+id/lossCutLo"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/border_round_20"
+                android:backgroundTint="@color/red"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/lossCoinTv"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/lossCutTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:backgroundTint="@color/red"
+                    android:paddingStart="5dp"
+                    android:text="@string/lossCutTv"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/lossCutNumberTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="7dp"
+                    android:text="@string/lossCutNumberTv"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/lossCoinIv"
+            android:layout_width="34dp"
+            android:layout_height="32dp"
+            app:layout_constraintBottom_toBottomOf="@+id/lossLo"
+            app:layout_constraintStart_toStartOf="@id/lossLo"
+            app:layout_constraintTop_toTopOf="@+id/lossLo"
+            app:srcCompat="@drawable/ic_coin" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/lostCutChangeTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/blue_round_border"
+            android:text="@string/lostCutChangeTv"
+            android:textColor="@color/ttada_blue"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/lossLo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/lossLo" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/pushAlarmTv"
@@ -323,9 +354,9 @@
         android:textColor="@color/ttada_blue"
         android:textSize="14sp"
         android:textStyle="bold"
-        android:layout_marginTop="30dp"
         app:layout_constraintStart_toStartOf="@+id/settingGlStart"
-        app:layout_constraintTop_toBottomOf="@+id/lossLo" />
+        app:layout_constraintTop_toBottomOf="@+id/lossWrapLo"
+        app:layout_constraintBottom_toTopOf="@id/versionInfoTv"/>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/pushAlarmChangeTv"
@@ -349,7 +380,7 @@
         android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/pushAlarmTv"
-        app:layout_constraintStart_toStartOf="@+id/gameJewelTv"
+        app:layout_constraintStart_toEndOf="@+id/settingGlCenter"
         app:layout_constraintTop_toTopOf="@+id/pushAlarmTv" />
 
     <androidx.cardview.widget.CardView
@@ -410,7 +441,7 @@
         android:textColor="@color/ttada_blue"
         android:textSize="14sp"
         android:textStyle="bold"
-        android:layout_marginTop="30dp"
+        app:layout_constraintBottom_toTopOf="@id/useLimitSetTv"
         app:layout_constraintStart_toStartOf="@+id/settingGlStart"
         app:layout_constraintTop_toBottomOf="@+id/pushAlarmTv" />
 
@@ -422,7 +453,7 @@
         android:textColor="@color/black"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@+id/versionInfoTv"
-        app:layout_constraintStart_toEndOf="@+id/versionInfoTv"
+        app:layout_constraintStart_toStartOf="@+id/pushAlarmChangeTv"
         app:layout_constraintTop_toTopOf="@+id/versionInfoTv" />
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -434,7 +465,7 @@
         android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/versionInfoTv"
-        app:layout_constraintStart_toStartOf="@+id/gameJewelTv"
+        app:layout_constraintStart_toEndOf="@+id/settingGlCenter"
         app:layout_constraintTop_toTopOf="@+id/versionInfoTv" />
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -458,7 +489,7 @@
         android:textColor="@color/ttada_blue"
         android:textSize="14sp"
         android:textStyle="bold"
-        android:layout_marginTop="30dp"
+        app:layout_constraintBottom_toTopOf="@id/customerCenterTv"
         app:layout_constraintStart_toStartOf="@+id/settingGlStart"
         app:layout_constraintTop_toBottomOf="@+id/versionInfoTv" />
 
